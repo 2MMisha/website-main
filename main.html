@@ -1,0 +1,1556 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="2M Media — digital agency specializing in competition management platforms" />
+  <meta name="keywords" content="digital agency, competition management, 2m media, web development, design, israel" />
+  <meta name="author" content="2M Media Team" />
+  <meta name="theme-color" content="#000000">
+  <link rel="canonical" href="https://2m-media.com/" />
+
+  <!-- ICON -->
+  <link rel="icon" href="icon.ico" type="image/x-icon" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="2M Media" />
+  <meta property="og:description" content="Digital agency specializing in competition management platforms and web solutions." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://2m-media.com/" />
+  <meta property="og:image" content="https://2m-media.com/og-image.png" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="2M Media" />
+  <meta name="twitter:description" content="Digital agency specializing in competition management platforms and web solutions." />
+  <meta name="twitter:image" content="https://2m-media.com/twitter-image.png" />
+
+  <title>2M Media</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
+  <style>
+    /* LOADER */
+    #loader {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-color: #000;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 2000;
+      opacity: 1;
+      transition: opacity 0.7s ease;
+    }
+    #loader.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    /* Hide content before load */
+    body.preload {
+      overflow: hidden;
+    }
+    body.preload > *:not(#loader) {
+      opacity: 0;
+      visibility: hidden;
+    }
+    body.loaded > *:not(#loader) {
+      opacity: 1;
+      visibility: visible;
+      transition: opacity 0.5s ease, visibility 0.5s ease;
+    }
+
+    .progress-bar {
+      width: 80%;
+      max-width: 400px;
+      height: 8px;
+      background: rgba(255,255,255,0.3);
+      border-radius: 4px;
+      overflow: hidden;
+      margin-top: 15px;
+      box-shadow: 0 0 10px rgba(255,255,255,0.4);
+    }
+
+    .progress-bar-inner {
+      height: 100%;
+      width: 0;
+      background: #fff;
+      border-radius: 4px;
+      animation: progressLoad 3s linear forwards;
+    }
+
+    @keyframes progressLoad {
+      0% { width: 0; }
+      100% { width: 100%; }
+    }
+
+    /* Main styles */
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Montserrat', sans-serif;
+      background-color: #000;
+      color: #fff;
+      height: 100%;
+      scroll-behavior: smooth;
+    }
+
+    /* Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: rgba(0,0,0,0.9);
+      z-index: 1000;
+      padding: 10px 20px;
+      box-sizing: border-box;
+      border-bottom: 1px solid #333;
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .nav-brand img {
+      height: 40px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+      filter: brightness(0) invert(1);
+    }
+
+    .nav-brand img:hover {
+      transform: scale(1.05);
+    }
+
+    /* Navigation links */
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .nav-link {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      white-space: nowrap;
+      padding: 8px 12px;
+      border-radius: 5px;
+      transition: all 0.3s ease;
+      font-size: 15px;
+    }
+
+    .nav-link:hover {
+      background: rgba(255,255,255,0.1);
+      color: #ccc;
+    }
+
+    /* Buttons */
+    .nav-btn {
+      background: white;
+      color: #000;
+      padding: 8px 15px;
+      border-radius: 5px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .nav-btn:hover {
+      background: #e6e6e6;
+      transform: translateY(-2px);
+    }
+
+    /* Language buttons */
+    .lang-buttons {
+      display: flex;
+      gap: 5px;
+      margin-left: 15px;
+    }
+    
+    .lang-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 5px;
+    }
+    
+    .lang-btn img {
+      width: 24px;
+      height: 16px;
+      border-radius: 2px;
+      transition: transform 0.2s;
+    }
+    
+    .lang-btn:hover img {
+      transform: scale(1.1);
+    }
+
+    /* Hamburger menu */
+    .hamburger {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 5px;
+      z-index: 1001;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 25px;
+      height: 3px;
+      background: #fff;
+      margin: 5px 0;
+      transition: all 0.3s ease;
+    }
+
+    /* Mobile menu */
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 80%;
+      max-width: 300px;
+      height: 100vh;
+      background: #000;
+      z-index: 1000;
+      transition: right 0.3s ease;
+      padding-top: 70px;
+      box-shadow: -5px 0 15px rgba(0,0,0,0.5);
+      border-left: 1px solid #333;
+    }
+
+    .mobile-menu.active {
+      right: 0;
+    }
+
+    .mobile-menu-content {
+      display: flex;
+      flex-direction: column;
+      height: calc(100% - 70px);
+      padding: 20px;
+    }
+
+    .mobile-link {
+      color: white;
+      padding: 15px 0;
+      text-decoration: none;
+      font-size: 1.1rem;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      transition: color 0.3s ease;
+    }
+
+    .mobile-link:hover {
+      color: #ccc;
+    }
+
+    .mobile-btn {
+      background: white;
+      color: #000;
+      margin: 15px 0;
+      border-radius: 5px;
+      text-align: center;
+      font-weight: 600;
+      padding: 12px;
+      transition: all 0.3s ease;
+    }
+
+    .mobile-btn:hover {
+      transform: translateY(-2px);
+    }
+
+    /* Language buttons in mobile menu */
+    .mobile-lang-switcher {
+      margin-top: auto;
+      padding-top: 20px;
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+    }
+
+    /* Overlay */
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.7);
+      z-index: 999;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+    
+    .overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    /* Hide overlay after load */
+    body.loaded .overlay {
+      display: none;
+    }
+
+    /* Hamburger animations */
+    .hamburger.active span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+    
+    .hamburger.active span:nth-child(2) {
+      opacity: 0;
+    }
+    
+    .hamburger.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(7px, -6px);
+    }
+
+    /* Other styles */
+    .div-start {
+      background-color: rgba(0,0,0,0.7);
+      padding: 30px;
+      border-radius: 10px;
+      display: inline-block;
+      backdrop-filter: blur(5px);
+      border: 1px solid #333;
+    }
+
+    header {
+      position: relative;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .video-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+      opacity: 0.5;
+    }
+
+    .header-content {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 30px 20px;
+      box-sizing: border-box;
+    }
+
+    .logo {
+      max-height: 80px;
+      margin-bottom: 20px;
+      filter: brightness(0) invert(1);
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      margin: 0;
+      font-weight: 600;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      position: relative;
+      display: inline-block;
+    }
+
+    h2:after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 50px;
+      height: 3px;
+      background: white;
+    }
+
+    .tagline {
+      font-size: 1.5rem;
+      margin-top: 10px;
+      padding: 10px;
+      border-radius: 6px;
+      max-width: 600px;
+      font-weight: 300;
+      line-height: 1.4;
+    }
+
+    section {
+      padding: 60px 40px;
+      max-width: 1200px;
+      margin: 100px auto 40px auto;
+      background: rgba(0,0,0,0.7);
+      color: #fff;
+      border-radius: 12px;
+      box-sizing: border-box;
+      border: 1px solid #333;
+    }
+
+    .description, .services {
+      font-size: 1.2rem;
+      line-height: 1.6;
+      margin-bottom: 40px;
+      text-align: center;
+      font-weight: 300;
+    }
+
+    .about-content {
+      display: flex;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .about-text {
+      flex: 1;
+    }
+
+    .about-image {
+      flex: 1;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 0 30px rgba(255,255,255,0.1);
+    }
+
+    .about-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* Developments Section */
+    .developments-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 40px;
+    }
+
+    .development-item {
+      width: 100%;
+      max-width: 800px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 20px;
+      border: 1px solid #333;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .development-item:hover {
+      background: rgba(255,255,255,0.1);
+    }
+
+    .development-header {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .development-logo {
+      height: 60px;
+      width: auto;
+      filter: brightness(0) invert(1);
+    }
+
+    .development-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      flex: 1;
+    }
+
+    .development-arrow {
+      font-size: 1.5rem;
+      transition: transform 0.3s ease;
+    }
+
+    .development-item.active .development-arrow {
+      transform: rotate(180deg);
+    }
+
+    .development-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+      padding-top: 0;
+    }
+
+    .development-item.active .development-content {
+      max-height: 500px;
+      padding-top: 20px;
+    }
+
+    .development-desc {
+      margin-bottom: 20px;
+      line-height: 1.6;
+    }
+
+    .development-btn {
+      display: inline-block;
+      padding: 10px 20px;
+      background: white;
+      color: #000;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .development-btn:hover {
+      background: #e6e6e6;
+      transform: translateY(-2px);
+    }
+
+    /* Services Section */
+    .services-filter {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 30px;
+    }
+
+    .filter-btn {
+      padding: 8px 16px;
+      background: rgba(255,255,255,0.1);
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: 500;
+    }
+
+    .filter-btn:hover, .filter-btn.active {
+      background: white;
+      color: #000;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 30px;
+    }
+
+    .service-item {
+      background: rgba(255,255,255,0.05);
+      border-radius: 10px;
+      padding: 30px;
+      transition: all 0.3s ease;
+      border: 1px solid #333;
+    }
+
+    .service-item:hover {
+      background: rgba(255,255,255,0.1);
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+    }
+
+    .service-icon {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      color: white;
+    }
+
+    .service-title {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 15px;
+    }
+
+    .service-desc {
+      font-size: 1rem;
+      line-height: 1.6;
+      opacity: 0.8;
+    }
+
+    /* Projects Section */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+
+    .project-item {
+      background: rgba(255,255,255,0.05);
+      border-radius: 10px;
+      padding: 20px;
+      text-align: center;
+      transition: all 0.3s ease;
+      border: 1px solid #333;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-item:hover {
+      background: rgba(255,255,255,0.1);
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+    }
+
+    .project-logo {
+      height: 80px;
+      width: auto;
+      margin-bottom: 15px;
+      filter: grayscale(100%) brightness(2);
+      transition: all 0.3s ease;
+    }
+
+    .project-item:hover .project-logo {
+      filter: grayscale(0%) brightness(1);
+    }
+
+    .project-title {
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .project-desc {
+      font-size: 0.9rem;
+      opacity: 0;
+      max-height: 0;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .project-item:hover .project-desc {
+      opacity: 1;
+      max-height: 200px;
+      margin-top: 10px;
+    }
+
+    .contact-form {
+      text-align: center;
+      margin-top: 40px;
+    }
+
+    .contact-form h2 {
+      margin-bottom: 20px;
+      color: #fff;
+    }
+
+    .contact-form form {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 15px;
+      border: 1px solid #333;
+      border-radius: 6px;
+      font-size: 1rem;
+      box-sizing: border-box;
+      background: rgba(255,255,255,0.1);
+      color: white;
+      transition: all 0.3s ease;
+    }
+
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      outline: none;
+      border-color: white;
+      background: rgba(255,255,255,0.2);
+    }
+
+    .contact-form input::placeholder,
+    .contact-form textarea::placeholder {
+      color: #ccc;
+    }
+
+    .contact-form button {
+      padding: 12px 24px;
+      background-color: white;
+      color: #000;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .contact-form button:hover,
+    .contact-form button:focus {
+      background-color: #e6e6e6;
+      transform: translateY(-2px);
+    }
+
+    .form-success-toast {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #28a745;
+      color: #fff;
+      padding: 15px 20px;
+      border-radius: 8px;
+      font-size: 1rem;
+      box-shadow: 0 0 12px rgba(0, 0, 0, 0.2);
+      z-index: 9999;
+      display: none;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+
+    .form-success-toast.show {
+      display: block;
+      opacity: 1;
+    }
+
+    footer {
+      background-color: #000;
+      text-align: center;
+      padding: 30px 20px;
+      font-size: 0.9rem;
+      color: #fff;
+      border-top: 1px solid #333;
+    }
+
+    .no-scroll {
+      overflow: hidden;
+    }
+
+    /* Responsiveness */
+    @media (max-width: 1024px) {
+      section {
+        margin: 80px 20px 30px 20px;
+        padding: 40px 30px;
+      }
+
+      .about-content {
+        flex-direction: column;
+      }
+
+      .about-image {
+        order: -1;
+        margin-bottom: 30px;
+      }
+
+      .services-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hamburger {
+        display: block;
+      }
+      
+      .nav-links {
+        display: none;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+
+      h2 {
+        font-size: 1.8rem;
+      }
+
+      .tagline {
+        font-size: 1.2rem;
+      }
+
+      .projects-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 20px;
+      }
+
+      .development-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
+
+      .development-title {
+        font-size: 1.3rem;
+      }
+    }
+
+    @media (max-width: 600px) {
+      section {
+        margin: 80px 15px 20px 15px;
+        padding: 30px 20px;
+      }
+
+      h1 {
+        font-size: 1.8rem;
+      }
+
+      h2 {
+        font-size: 1.6rem;
+      }
+
+      .tagline {
+        font-size: 1rem;
+      }
+
+      .contact-form input,
+      .contact-form textarea {
+        font-size: 0.9rem;
+        padding: 10px;
+      }
+
+      .contact-form button {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+      }
+
+      .projects-grid {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+        gap: 15px;
+      }
+
+      .project-logo {
+        height: 60px;
+      }
+
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body class="preload">
+  <!-- LOADER -->
+  <div id="loader" role="alert" aria-live="assertive" aria-busy="true" aria-label="Loading website">
+    <div>Loading...</div>
+    <div class="progress-bar" aria-hidden="true">
+      <div class="progress-bar-inner"></div>
+    </div>
+  </div>
+
+  <!-- NAVIGATION -->
+  <nav>
+    <div class="nav-container">
+      <div class="nav-brand">
+        <img src="logo-w.png" alt="2M Media Logo" onclick="window.location.href='index.html'" />
+      </div>
+      
+      <!-- Desktop navigation -->
+      <div class="nav-links">
+        <a href="#home" class="nav-link" id="nav-home">Home</a>
+        <a href="#about" class="nav-link" id="nav-about">About</a>
+        <a href="#developments" class="nav-link" id="nav-developments">Our Developments</a>
+        <a href="#services" class="nav-link" id="nav-services">Our Services</a>
+        <a href="#projects" class="nav-link" id="nav-projects">Projects</a>
+        <a href="#contact" class="nav-link" id="nav-contact">Contact</a>
+        
+        <div class="lang-buttons">
+          <button class="lang-btn" onclick="switchLang('en')" aria-label="English">
+            <img src="https://flagcdn.com/w40/gb.png" alt="English" />
+          </button>
+          <button class="lang-btn" onclick="switchLang('ru')" aria-label="Русский">
+            <img src="https://flagcdn.com/w40/ru.png" alt="Русский" />
+          </button>
+          <button class="lang-btn" onclick="switchLang('he')" aria-label="עברית">
+            <img src="https://flagcdn.com/w40/il.png" alt="עברית" />
+          </button>
+        </div>
+      </div>
+
+      <button class="hamburger" id="hamburger" aria-expanded="false" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <!-- Mobile menu -->
+      <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-content">
+          <a href="#home" class="mobile-link" id="mobile-home">Home</a>
+          <a href="#about" class="mobile-link" id="mobile-about">About</a>
+          <a href="#developments" class="mobile-link" id="mobile-developments">Our Developments</a>
+          <a href="#services" class="mobile-link" id="mobile-services">Our Services</a>
+          <a href="#projects" class="mobile-link" id="mobile-projects">Projects</a>
+          <a href="#contact" class="mobile-link" id="mobile-contact">Contact</a>
+          
+          <div class="mobile-lang-switcher">
+            <button class="lang-btn" onclick="switchLang('en')" aria-label="English">
+              <img src="https://flagcdn.com/w40/gb.png" alt="English" />
+            </button>
+            <button class="lang-btn" onclick="switchLang('ru')" aria-label="Русский">
+              <img src="https://flagcdn.com/w40/ru.png" alt="Русский" />
+            </button>
+            <button class="lang-btn" onclick="switchLang('he')" aria-label="עברית">
+              <img src="https://flagcdn.com/w40/il.png" alt="עברית" />
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Overlay -->
+  <div class="overlay" id="overlay"></div>
+
+  <!-- MAIN CONTENT -->
+  <header id="home">
+    <video autoplay muted loop playsinline class="video-bg" aria-hidden="true" tabindex="-1" preload="none" poster="placeholder.jpg">
+      <source src="header.webm" type="video/webm">
+      <source src="header.mp4" type="video/mp4">
+    </video>
+    <div class="header-content">
+      <div class="div-start">
+        <img src="logo-w.png" alt="2M Media Logo" class="logo" />
+        <h1 id="main-title">2M Media</h1>
+        <div class="tagline" id="tagline">Digital solutions for your business</div>
+      </div>
+    </div>
+  </header>
+
+  <!-- About Section -->
+  <section id="about">
+    <h2 id="about-title">About Us</h2>
+    <div class="about-content">
+      <div class="about-text">
+        <p id="about-text-1">2M Media is a digital agency specializing in web development, design, and competition management platforms. Founded in 2018, we've been helping businesses and organizations establish their digital presence with innovative solutions.</p>
+        <p id="about-text-2">Our team consists of experienced developers, designers, and project managers who are passionate about creating high-quality digital products. We believe in combining functionality with elegant design to deliver exceptional user experiences.</p>
+        <p id="about-text-3">From small business websites to complex web applications, we approach each project with the same level of dedication and attention to detail. Our flagship product, Rising Star Manager, has been successfully used to manage numerous competitions and events worldwide.</p>
+      </div>
+      <div class="about-image">
+        <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="2M Media Team" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Developments Section -->
+  <section id="developments">
+    <h2 id="developments-title">Our Developments</h2>
+    <p class="description" id="developments-description">Discover our proprietary software solutions developed to meet specific industry needs.</p>
+    
+    <div class="developments-container">
+      <div class="development-item" id="rsm-development">
+        <div class="development-header">
+          <img src="rsm.png" alt="Rising Star Manager Logo" class="development-logo" />
+          <div class="development-title">Rising Star Manager</div>
+          <div class="development-arrow"><i class="fas fa-chevron-down"></i></div>
+        </div>
+        <div class="development-content">
+          <div class="development-desc" id="rsm-desc">
+            Rising Star Manager is a comprehensive competition management platform that simplifies the organization of sports and artistic events. The system provides complete control over the entire competition process - from online registration of participants to automatic calculation of results and generation of certificates.
+            
+            <br><br>Key features:
+            <ul>
+              <li>Online registration with customizable forms</li>
+              <li>Automatic scheduling by categories</li>
+              <li>Digital judging system with real-time scoring</li>
+              <li>Dynamic results calculation and leaderboards</li>
+              <li>Certificate generation with custom designs</li>
+              <li>Participant management dashboard</li>
+              <li>Multi-language support</li>
+            </ul>
+          </div>
+          <a href="https://www.ristar.co" class="development-btn" target="_blank">Visit Website</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section id="services">
+    <h2 id="services-title">Our Services</h2>
+    <p class="description" id="services-description">We offer a wide range of digital and event services to meet your business needs.</p>
+    
+    <div class="services-filter">
+      <button class="filter-btn active" data-category="all">All</button>
+      <button class="filter-btn" data-category="design">Design & Development</button>
+      <button class="filter-btn" data-category="events">Events</button>
+      <button class="filter-btn" data-category="tech">Technical</button>
+    </div>
+    
+    <div class="services-grid">
+      <!-- Design & Development Services -->
+      <div class="service-item" data-category="design">
+        <div class="service-icon"><i class="fas fa-laptop-code"></i></div>
+        <h3 class="service-title" id="service-1-title">Website Design & Hosting</h3>
+        <p class="service-desc" id="service-1-desc">Custom website design and development with reliable hosting solutions tailored to your business requirements.</p>
+      </div>
+      
+      <div class="service-item" data-category="design">
+        <div class="service-icon"><i class="fas fa-paint-brush"></i></div>
+        <h3 class="service-title" id="service-2-title">Graphic Design</h3>
+        <p class="service-desc" id="service-2-desc">Professional graphic design services including logos, banners, business cards, and marketing materials.</p>
+      </div>
+      
+      <div class="service-item" data-category="design">
+        <div class="service-icon"><i class="fas fa-ad"></i></div>
+        <h3 class="service-title" id="service-3-title">Advertising Development</h3>
+        <p class="service-desc" id="service-3-desc">Creation of effective advertising campaigns and materials for digital and print media.</p>
+      </div>
+      
+      <div class="service-item" data-category="design">
+        <div class="service-icon"><i class="fas fa-trademark"></i></div>
+        <h3 class="service-title" id="service-4-title">Brand Development</h3>
+        <p class="service-desc" id="service-4-desc">Comprehensive brand identity development including naming, logo design, and brand guidelines.</p>
+      </div>
+      
+      <!-- Events Services -->
+      <div class="service-item" data-category="events">
+        <div class="service-icon"><i class="fas fa-calendar-alt"></i></div>
+        <h3 class="service-title" id="service-5-title">Event Organization</h3>
+        <p class="service-desc" id="service-5-desc">Full organization of celebrations, concerts and corporate events from concept to execution.</p>
+      </div>
+      
+      <div class="service-item" data-category="events">
+        <div class="service-icon"><i class="fas fa-lightbulb"></i></div>
+        <h3 class="service-title" id="service-6-title">Lighting Solutions</h3>
+        <p class="service-desc" id="service-6-desc">Professional lighting design and equipment for events of any scale and complexity.</p>
+      </div>
+      
+      <div class="service-item" data-category="events">
+        <div class="service-icon"><i class="fas fa-volume-up"></i></div>
+        <h3 class="service-title" id="service-7-title">Sound Engineering</h3>
+        <p class="service-desc" id="service-7-desc">High-quality sound equipment and engineering services for events and performances.</p>
+      </div>
+      
+      <div class="service-item" data-category="events">
+        <div class="service-icon"><i class="fas fa-hebrew"></i></div>
+        <h3 class="service-title" id="service-8-title">Event Production</h3>
+        <p class="service-desc" id="service-8-desc">Complete production of events including planning, coordination and technical support.</p>
+      </div>
+      
+      <div class="service-item" data-category="events">
+        <div class="service-icon"><i class="fas fa-music"></i></div>
+        <h3 class="service-title" id="service-9-title">Event Entertainment</h3>
+        <p class="service-desc" id="service-9-desc">Organization of entertainment programs including artists booking and performance coordination.</p>
+      </div>
+      
+      <!-- Technical Services -->
+      <div class="service-item" data-category="tech">
+        <div class="service-icon"><i class="fas fa-trophy"></i></div>
+        <h3 class="service-title" id="service-10-title">Competition Management</h3>
+        <p class="service-desc" id="service-10-desc">Complete management of sports and artistic competitions including registration, scheduling and judging.</p>
+      </div>
+      
+      <div class="service-item" data-category="tech">
+        <div class="service-icon"><i class="fas fa-user-plus"></i></div>
+        <h3 class="service-title" id="service-11-title">Registration Systems</h3>
+        <p class="service-desc" id="service-11-desc">Development and implementation of custom registration systems for events and competitions.</p>
+      </div>
+      
+      <div class="service-item" data-category="tech">
+        <div class="service-icon"><i class="fas fa-code"></i></div>
+        <h3 class="service-title" id="service-12-title">Technical Development</h3>
+        <p class="service-desc" id="service-12-desc">Custom software development for specific projects and business needs.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects">
+    <h2 id="projects-title">Our Projects</h2>
+    <p class="description" id="projects-description">Here are some of the projects we've developed and currently maintain. Hover over each logo to see more details.</p>
+    
+    <div class="projects-grid">
+      <div class="project-item">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/1200px-Google_2015_logo.svg.png" alt="Project 1" class="project-logo" />
+        <div class="project-title" id="project-1-title">Rising Star Manager</div>
+        <div class="project-desc" id="project-1-desc">
+          Comprehensive competition management platform with registration, scheduling, judging and results calculation features.
+        </div>
+      </div>
+      
+      <div class="project-item">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Apple_logo_black.svg/1200px-Apple_logo_black.svg.png" alt="Project 2" class="project-logo" />
+        <div class="project-title" id="project-2-title">Event Horizon</div>
+        <div class="project-desc" id="project-2-desc">
+          Event management system for conferences and corporate events with ticketing and attendee tracking.
+        </div>
+      </div>
+      
+      <div class="project-item">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Amazon_logo.svg/1200px-Amazon_logo.svg.png" alt="Project 3" class="project-logo" />
+        <div class="project-title" id="project-3-title">ScoreMaster</div>
+        <div class="project-desc" id="project-3-desc">
+          Real-time scoring system for sports competitions with mobile judging interface.
+        </div>
+      </div>
+      
+      <div class="project-item">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Microsoft_logo_%282012%29.svg/1200px-Microsoft_logo_%282012%29.svg.png" alt="Project 4" class="project-logo" />
+        <div class="project-title" id="project-4-title">CertifyPro</div>
+        <div class="project-desc" id="project-4-desc">
+          Digital certificate generation and verification platform for educational institutions.
+        </div>
+      </div>
+      
+      <div class="project-item">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Ubuntu_logo_2018.svg/1200px-Ubuntu_logo_2018.svg.png" alt="Project 5" class="project-logo" />
+        <div class="project-title" id="project-5-title">RegFlow</div>
+        <div class="project-desc" id="project-5-desc">
+          Streamlined registration system with payment processing and data management.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact">
+    <h2 id="contact-title">Contact Us</h2>
+    <p class="description" id="contact-description">Have a project in mind or want to learn more about our services? Get in touch with our team.</p>
+    
+    <div class="contact-form">
+      <form id="contactForm" aria-label="Contact form" action="https://formsubmit.co/2mmedia.il@gmail.com" method="POST">
+        <input id="name-field" type="text" name="name" placeholder="Your Name" required aria-required="true" />
+        <input id="email-field" type="email" name="email" placeholder="Your Email" required aria-required="true" />
+        <textarea id="message-field" name="message" rows="5" placeholder="Your Message..." required aria-required="true"></textarea>
+        <input type="text" name="_honey" style="display:none" autocomplete="off" />
+        <input type="hidden" name="_captcha" value="false" />
+        <button id="submit-button" type="submit">Send Message</button>
+      </form>
+      <div class="form-success-toast" id="formSuccessToast" role="alert" aria-live="assertive" aria-atomic="true">✅ Sent, thank you!</div>
+    </div>
+  </section>
+
+  <footer>
+    <div id="footer-text">© 2025 2M Media. All rights reserved.</div>
+  </footer>
+
+  <script>
+    // Simplified loader hiding logic
+    function hideLoader() {
+      const loader = document.getElementById('loader');
+      if (loader) {
+        loader.classList.add('hidden');
+        document.body.classList.remove('preload');
+        document.body.classList.add('loaded');
+        
+        setTimeout(() => {
+          loader.remove();
+          document.getElementById('overlay').style.display = 'none';
+        }, 700);
+      }
+    }
+
+    // Try to hide loader when page is fully loaded
+    window.addEventListener('load', hideLoader);
+
+    // Fallback in case load event doesn't fire
+    setTimeout(hideLoader, 2000);
+
+    // Translations
+    const translations = {
+      ru: {
+        lang: "ru", dir: "ltr",
+        title: "2M Media",
+        tagline: "Цифровые решения для вашего бизнеса",
+        aboutTitle: "О нас",
+        aboutTexts: [
+          "2M Media — это digital-агентство, специализирующееся на веб-разработке, дизайне и платформах для управления соревнованиями. Основанная в 2018 году, мы помогаем бизнесу и организациям создавать цифровые решения.",
+          "Наша команда состоит из опытных разработчиков, дизайнеров и менеджеров проектов, которые увлечены созданием качественных цифровых продуктов. Мы сочетаем функциональность с элегантным дизайном.",
+          "От небольших сайтов до сложных веб-приложений — мы подходим к каждому проекту с одинаковым вниманием к деталям. Наш флагманский продукт, Rising Star Manager, успешно используется для управления соревнованиями по всему миру."
+        ],
+        developmentsTitle: "Наши разработки",
+        developmentsDesc: "Откройте для себя наши собственные программные решения, разработанные для удовлетворения конкретных потребностей отрасли.",
+        rsmDesc: `
+          Rising Star Manager - это комплексная платформа для управления соревнованиями, которая упрощает организацию спортивных и художественных мероприятий. Система обеспечивает полный контроль над всем процессом проведения соревнований - от онлайн-регистрации участников до автоматического расчета результатов и генерации сертификатов.
+          
+          <br><br>Ключевые особенности:
+          <ul>
+            <li>Онлайн-регистрация с настраиваемыми формами</li>
+            <li>Автоматическое составление расписания по категориям</li>
+            <li>Цифровая система судейства с оценкой в реальном времени</li>
+            <li>Динамический расчет результатов и таблицы лидеров</li>
+            <li>Генерация сертификатов с индивидуальным дизайном</li>
+            <li>Панель управления участниками</li>
+            <li>Поддержка нескольких языков</li>
+          </ul>
+        `,
+        servicesTitle: "Наши услуги",
+        servicesDesc: "Мы предлагаем широкий спектр цифровых и event-услуг для удовлетворения потребностей вашего бизнеса.",
+        services: [
+          { title: "Дизайн и хостинг сайтов", desc: "Индивидуальный дизайн и разработка веб-сайтов с надежными хостинг-решениями, соответствующими требованиям вашего бизнеса." },
+          { title: "Графический дизайн", desc: "Профессиональные услуги графического дизайна, включая логотипы, баннеры, визитки и маркетинговые материалы." },
+          { title: "Разработка рекламы", desc: "Создание эффективных рекламных кампаний и материалов для цифровых и печатных СМИ." },
+          { title: "Разработка брендов", desc: "Комплексное развитие идентичности бренда, включая нейминг, дизайн логотипа и руководства по бренду." },
+          { title: "Организация мероприятий", desc: "Полная организация праздников, концертов и корпоративных мероприятий от концепции до реализации." },
+          { title: "Освещение", desc: "Профессиональный дизайн освещения и оборудование для мероприятий любого масштаба и сложности." },
+          { title: "Звук", desc: "Высококачественное звуковое оборудование и инженерные услуги для мероприятий и выступлений." },
+          { title: "Организация мероприятий", desc: "Полная организация мероприятий, включая планирование, координацию и техническую поддержку." },
+          { title: "Развлечения на мероприятиях", desc: "Организация развлекательных программ, включая бронирование артистов и координацию выступлений." },
+          { title: "Управление соревнованиями", desc: "Полное управление спортивными и художественными соревнованиями, включая регистрацию, составление расписания и судейство." },
+          { title: "Системы регистрации", desc: "Разработка и внедрение индивидуальных систем регистрации для мероприятий и соревнований." },
+          { title: "Техническая разработка", desc: "Разработка индивидуального программного обеспечения для конкретных проектов и бизнес-потребностей." }
+        ],
+        projectsTitle: "Наши проекты",
+        projectsDesc: "Вот некоторые из проектов, которые мы разработали. Наведите курсор на логотип, чтобы увидеть подробности.",
+        projects: [
+          { title: "Rising Star Manager", desc: "Комплексная платформа для управления соревнованиями с регистрацией, расписанием, судейством и расчетом результатов." },
+          { title: "Event Horizon", desc: "Система управления мероприятиями для конференций и корпоративных событий с продажей билетов и отслеживанием участников." },
+          { title: "ScoreMaster", desc: "Система подсчета очков в реальном времени для спортивных соревнований с мобильным интерфейсом для судей." },
+          { title: "CertifyPro", desc: "Платформа для создания и проверки цифровых сертификатов для образовательных учреждений." },
+          { title: "RegFlow", desc: "Упрощенная система регистрации с обработкой платежей и управлением данными." }
+        ],
+        contactTitle: "Свяжитесь с нами",
+        contactDesc: "Есть проект или хотите узнать больше о наших услугах? Свяжитесь с нашей командой.",
+        nav: { 
+          home: "Главная", 
+          about: "О нас",
+          developments: "Разработки",
+          services: "Услуги",
+          projects: "Проекты",
+          contact: "Контакты"
+        },
+        form: { 
+          name: "Ваше имя", 
+          email: "Ваш Email", 
+          message: "Ваше сообщение...", 
+          send: "Отправить сообщение" 
+        },
+        footer: "Все права защищены.",
+        toast: "✅ Отправлено, спасибо!"
+      },
+      en: {
+        lang: "en", dir: "ltr",
+        title: "2M Media",
+        tagline: "Digital solutions for your business",
+        aboutTitle: "About Us",
+        aboutTexts: [
+          "2M Media is a digital agency specializing in web development, design, and competition management platforms. Founded in 2018, we've been helping businesses and organizations establish their digital presence with innovative solutions.",
+          "Our team consists of experienced developers, designers, and project managers who are passionate about creating high-quality digital products. We believe in combining functionality with elegant design to deliver exceptional user experiences.",
+          "From small business websites to complex web applications, we approach each project with the same level of dedication and attention to detail. Our flagship product, Rising Star Manager, has been successfully used to manage numerous competitions and events worldwide."
+        ],
+        developmentsTitle: "Our Developments",
+        developmentsDesc: "Discover our proprietary software solutions developed to meet specific industry needs.",
+        rsmDesc: `
+          Rising Star Manager is a comprehensive competition management platform that simplifies the organization of sports and artistic events. The system provides complete control over the entire competition process - from online registration of participants to automatic calculation of results and generation of certificates.
+          
+          <br><br>Key features:
+          <ul>
+            <li>Online registration with customizable forms</li>
+            <li>Automatic scheduling by categories</li>
+            <li>Digital judging system with real-time scoring</li>
+            <li>Dynamic results calculation and leaderboards</li>
+            <li>Certificate generation with custom designs</li>
+            <li>Participant management dashboard</li>
+            <li>Multi-language support</li>
+          </ul>
+        `,
+        servicesTitle: "Our Services",
+        servicesDesc: "We offer a wide range of digital and event services to meet your business needs.",
+        services: [
+          { title: "Website Design & Hosting", desc: "Custom website design and development with reliable hosting solutions tailored to your business requirements." },
+          { title: "Graphic Design", desc: "Professional graphic design services including logos, banners, business cards, and marketing materials." },
+          { title: "Advertising Development", desc: "Creation of effective advertising campaigns and materials for digital and print media." },
+          { title: "Brand Development", desc: "Comprehensive brand identity development including naming, logo design, and brand guidelines." },
+          { title: "Event Organization", desc: "Full organization of celebrations, concerts and corporate events from concept to execution." },
+          { title: "Lighting Solutions", desc: "Professional lighting design and equipment for events of any scale and complexity." },
+          { title: "Sound Engineering", desc: "High-quality sound equipment and engineering services for events and performances." },
+          { title: "Event Production", desc: "Complete production of events including planning, coordination and technical support." },
+          { title: "Event Entertainment", desc: "Organization of entertainment programs including artists booking and performance coordination." },
+          { title: "Competition Management", desc: "Complete management of sports and artistic competitions including registration, scheduling and judging." },
+          { title: "Registration Systems", desc: "Development and implementation of custom registration systems for events and competitions." },
+          { title: "Technical Development", desc: "Custom software development for specific projects and business needs." }
+        ],
+        projectsTitle: "Our Projects",
+        projectsDesc: "Here are some of the projects we've developed and currently maintain. Hover over each logo to see more details.",
+        projects: [
+          { title: "Rising Star Manager", desc: "Comprehensive competition management platform with registration, scheduling, judging and results calculation features." },
+          { title: "Event Horizon", desc: "Event management system for conferences and corporate events with ticketing and attendee tracking." },
+          { title: "ScoreMaster", desc: "Real-time scoring system for sports competitions with mobile judging interface." },
+          { title: "CertifyPro", desc: "Digital certificate generation and verification platform for educational institutions." },
+          { title: "RegFlow", desc: "Streamlined registration system with payment processing and data management." }
+        ],
+        contactTitle: "Contact Us",
+        contactDesc: "Have a project in mind or want to learn more about our services? Get in touch with our team.",
+        nav: { 
+          home: "Home", 
+          about: "About",
+          developments: "Our Developments",
+          services: "Our Services",
+          projects: "Projects",
+          contact: "Contact"
+        },
+        form: { 
+          name: "Your Name", 
+          email: "Your Email", 
+          message: "Your Message...", 
+          send: "Send Message" 
+        },
+        footer: "All rights reserved.",
+        toast: "✅ Sent, thank you!"
+      },
+      he: {
+        lang: "he", dir: "rtl",
+        title: "2M Media",
+        tagline: "פתרונות דיגיטליים לעסק שלך",
+        aboutTitle: "אודותינו",
+        aboutTexts: [
+          "2M Media היא סוכנות דיגיטלית המתמחה בפיתוח אתרים, עיצוב ופלטפורמות לניהול תחרויות. מאז הקמתה ב-2018, אנו מסייעים לעסקים ולארגונים לבסס את הנוכחות הדיגיטלית שלהם עם פתרונות חדשניים.",
+          "הצוות שלנו כולל מפתחים, מעצבים ומנהלי פרויקטים מנוסים אשר נלהבים מיצירת מוצרים דיגיטליים באיכות גבוהה. אנו מאמינים בשילוב של פונקציונליות עם עיצוב אלגנטי כדי לספק חוויות משתמש יוצאות דופן.",
+          "מאתרי עסקים קטנים ועד יישומי אינטרנט מורכבים - אנו ניגשים לכל פרויקט עם אותה רמת מסירות ותשומת לב לפרטים. המוצר הדגל שלנו, Rising Star Manager, משמש בהצלחה לניהול תחרויות ואירועים ברחבי העולם."
+        ],
+        developmentsTitle: "הפיתוחים שלנו",
+        developmentsDesc: "גלה את פתרונות התוכנה העצמאיים שלנו שפותחו כדי לענות על צרכים ספציפיים בתעשייה.",
+        rsmDesc: `
+          Rising Star Manager היא פלטפורמה מקיפה לניהול תחרויות שמפשטת את הארגון של אירועים ספורטיביים ואמנותיים. המערכת מספקת שליטה מלאה על כל תהליך התחרות - מהרשמת משתתפים מקוונת ועד חישוב תוצאות אוטומטי ויצירת תעודות.
+          
+          <br><br>תכונות עיקריות:
+          <ul>
+            <li>הרשמה מקוונת עם טפסים הניתנים להתאמה אישית</li>
+            <li>תזמון אוטומטי לפי קטגוריות</li>
+            <li>מערכת שיפוט דיגיטלית עם ניקוד בזמן אמת</li>
+            <li>חישוב תוצאות דינמי ולוחות מובילים</li>
+            <li>יצירת תעודות עם עיצובים מותאמים אישית</li>
+            <li>לוח בקרה לניהול משתתפים</li>
+            <li>תמיכה במספר שפות</li>
+          </ul>
+        `,
+        servicesTitle: "השירותים שלנו",
+        servicesDesc: "אנו מציעים מגוון רחב של שירותים דיגיטליים ואירועים כדי לענות על צרכי העסק שלך.",
+        services: [
+          { title: "עיצוב ואחסון אתרים", desc: "עיצוב ופיתוח אתרים מותאמים אישית עם פתרונות אחסון אמינים המותאמים לדרישות העסק שלך." },
+          { title: "עיצוב גרפי", desc: "שירותי עיצוב גרפי מקצועיים כולל לוגואים, באנרים, כרטיסי ביקור וחומרי שיווק." },
+          { title: "פיתוח פרסום", desc: "יצירת קמפיינים פרסומיים וחומרים אפקטיביים עבור מדיה דיגיטלית ומודפסת." },
+          { title: "פיתוח מותג", desc: "פיתוח זהות מותג מקיפה כולל מתן שם, עיצוב לוגו ונחיות מותג." },
+          { title: "ארגון אירועים", desc: "ארגון מלא של חגיגות, קונצרטים ואירועים חברתיים מהרעיון ועד הביצוע." },
+          { title: "תאורה", desc: "עיצוב תאורה מקצועי וציוד לאירועים בכל קנה מידה ומורכבות." },
+          { title: "סאונד", desc: "ציוד סאונד באיכות גבוהה ושירותי הנדסה לאירועים והופעות." },
+          { title: "הפקת אירועים", desc: "הפקה מלאה של אירועים כולל תכנון, תיאום ותמיכה טכנית." },
+          { title: "בידור באירועים", desc: "ארגון תוכניות בידור כולל הזמנת אמנים ותיאום הופעות." },
+          { title: "ניהול תחרויות", desc: "ניהול מלא של תחרויות ספורט ואמנות כולל רישום, תזמון ושיפוט." },
+          { title: "מערכות רישום", desc: "פיתוח ויישום מערכות רישום מותאמות אישית לאירועים ותחרויות." },
+          { title: "פיתוח טכני", desc: "פיתוח תוכנה מותאמת אישית לפרויקטים ספציפיים וצרכי עסק." }
+        ],
+        projectsTitle: "הפרויקטים שלנו",
+        projectsDesc: "להלן כמה מהפרויקטים שפיתחנו. רחף מעל כל לוגו כדי לראות פרטים נוספים.",
+        projects: [
+          { title: "Rising Star Manager", desc: "פלטפורמה מקיפה לניהול תחרויות עם תכונות רישום, תזמון, שיפוט וחישוב תוצאות." },
+          { title: "Event Horizon", desc: "מערכת לניהול אירועים לכנסים ואירועים חברתיים עם כרטיסים ומעקב משתתפים." },
+          { title: "ScoreMaster", desc: "מערכת ניקוד בזמן אמת לתחרויות ספורט עם ממשק שיפוט נייד." },
+          { title: "CertifyPro", desc: "פלטפורמה ליצירה ואימות תעודות דיגיטליות למוסדות חינוך." },
+          { title: "RegFlow", desc: "מערכת רישום יעילה עם עיבוד תשלומים וניהול נתונים." }
+        ],
+        contactTitle: "צור קשר",
+        contactDesc: "יש לך פרויקט בראש או רוצה ללמוד עוד על השירותים שלנו? צור קשר עם הצוות שלנו.",
+        nav: { 
+          home: "בית", 
+          about: "אודות",
+          developments: "הפיתוחים שלנו",
+          services: "השירותים שלנו",
+          projects: "פרויקטים",
+          contact: "יצירת קשר"
+        },
+        form: { 
+          name: "שמך", 
+          email: "האימייל שלך", 
+          message: "ההודעה שלך...", 
+          send: "שלח הודעה" 
+        },
+        footer: "כל הזכויות שמורות.",
+        toast: "✅ נשלח, תודה!"
+      }
+    };
+
+    // Detect user's preferred language
+    function detectLanguage() {
+      const userLang = navigator.language || navigator.userLanguage;
+      if (userLang.startsWith('ru')) return 'ru';
+      if (userLang.startsWith('he')) return 'he';
+      return 'en'; // default to English
+    }
+
+    function switchLang(lang) {
+      const t = translations[lang];
+      document.documentElement.lang = t.lang;
+      document.documentElement.dir = t.dir;
+      document.title = t.title;
+
+      // Update main content
+      document.getElementById('main-title').innerText = t.title;
+      document.getElementById('tagline').innerText = t.tagline;
+      
+      // Update about section
+      document.getElementById('about-title').innerText = t.aboutTitle;
+      document.getElementById('about-text-1').innerText = t.aboutTexts[0];
+      document.getElementById('about-text-2').innerText = t.aboutTexts[1];
+      document.getElementById('about-text-3').innerText = t.aboutTexts[2];
+      
+      // Update developments section
+      document.getElementById('developments-title').innerText = t.developmentsTitle;
+      document.getElementById('developments-description').innerText = t.developmentsDesc;
+      document.getElementById('rsm-desc').innerHTML = t.rsmDesc;
+      
+      // Update services section
+      document.getElementById('services-title').innerText = t.servicesTitle;
+      document.getElementById('services-description').innerText = t.servicesDesc;
+      
+      // Update services items
+      for (let i = 0; i < t.services.length; i++) {
+        document.getElementById(`service-${i+1}-title`).innerText = t.services[i].title;
+        document.getElementById(`service-${i+1}-desc`).innerText = t.services[i].desc;
+      }
+      
+      // Update projects section
+      document.getElementById('projects-title').innerText = t.projectsTitle;
+      document.getElementById('projects-description').innerText = t.projectsDesc;
+      
+      // Update projects items
+      for (let i = 0; i < t.projects.length; i++) {
+        document.getElementById(`project-${i+1}-title`).innerText = t.projects[i].title;
+        document.getElementById(`project-${i+1}-desc`).innerText = t.projects[i].desc;
+      }
+      
+      // Update contact section
+      document.getElementById('contact-title').innerText = t.contactTitle;
+      document.getElementById('contact-description').innerText = t.contactDesc;
+      
+      // Update navigation
+      document.getElementById('nav-home').innerText = t.nav.home;
+      document.getElementById('nav-about').innerText = t.nav.about;
+      document.getElementById('nav-developments').innerText = t.nav.developments;
+      document.getElementById('nav-services').innerText = t.nav.services;
+      document.getElementById('nav-projects').innerText = t.nav.projects;
+      document.getElementById('nav-contact').innerText = t.nav.contact;
+
+      // Update mobile navigation
+      document.getElementById('mobile-home').innerText = t.nav.home;
+      document.getElementById('mobile-about').innerText = t.nav.about;
+      document.getElementById('mobile-developments').innerText = t.nav.developments;
+      document.getElementById('mobile-services').innerText = t.nav.services;
+      document.getElementById('mobile-projects').innerText = t.nav.projects;
+      document.getElementById('mobile-contact').innerText = t.nav.contact;
+
+      // Update form
+      document.getElementById('name-field').placeholder = t.form.name;
+      document.getElementById('email-field').placeholder = t.form.email;
+      document.getElementById('message-field').placeholder = t.form.message;
+      document.getElementById('submit-button').innerText = t.form.send;
+
+      // Update footer
+      document.getElementById('footer-text').innerText = `© 2025 2M Media. ${t.footer}`;
+    }
+
+    // Initialize after DOM loads
+    document.addEventListener('DOMContentLoaded', function() {
+      // Set language based on user preference
+      switchLang(detectLanguage());
+
+      // Menu management
+      const hamburger = document.getElementById('hamburger');
+      const mobileMenu = document.getElementById('mobileMenu');
+      const overlay = document.getElementById('overlay');
+      const body = document.body;
+
+      hamburger.addEventListener('click', function() {
+        const isExpanded = this.getAttribute('aria-expanded') === 'true';
+        this.setAttribute('aria-expanded', !isExpanded);
+        mobileMenu.classList.toggle('active');
+        overlay.classList.toggle('active');
+        body.classList.toggle('no-scroll');
+        this.classList.toggle('active');
+      });
+
+      // Close menu when clicking overlay
+      overlay.addEventListener('click', function() {
+        hamburger.setAttribute('aria-expanded', 'false');
+        mobileMenu.classList.remove('active');
+        overlay.classList.remove('active');
+        body.classList.remove('no-scroll');
+        hamburger.classList.remove('active');
+      });
+
+      // Close menu when clicking a link
+      const mobileLinks = document.querySelectorAll('.mobile-link, .mobile-btn');
+      mobileLinks.forEach(link => {
+        link.addEventListener('click', function() {
+          hamburger.setAttribute('aria-expanded', 'false');
+          mobileMenu.classList.remove('active');
+          overlay.classList.remove('active');
+          body.classList.remove('no-scroll');
+          hamburger.classList.remove('active');
+        });
+      });
+
+      // Development item toggle
+      const developmentItems = document.querySelectorAll('.development-item');
+      developmentItems.forEach(item => {
+        item.addEventListener('click', function() {
+          this.classList.toggle('active');
+        });
+      });
+
+      // Services filtering
+      const filterButtons = document.querySelectorAll('.filter-btn');
+      const serviceItems = document.querySelectorAll('.service-item');
+      
+      filterButtons.forEach(button => {
+        button.addEventListener('click', function() {
+          // Remove active class from all buttons
+          filterButtons.forEach(btn => btn.classList.remove('active'));
+          // Add active class to clicked button
+          this.classList.add('active');
+          
+          const category = this.dataset.category;
+          
+          // Filter services
+          serviceItems.forEach(item => {
+            if (category === 'all' || item.dataset.category === category) {
+              item.style.display = 'block';
+            } else {
+              item.style.display = 'none';
+            }
+          });
+        });
+      });
+
+      // Form handling
+      document.getElementById('contactForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const form = e.target;
+        const data = new FormData(form);
+        
+        try {
+          const response = await fetch(form.action, {
+            method: 'POST',
+            body: data,
+            headers: { 'Accept': 'application/json' }
+          });
+
+          if (response.ok) {
+            form.reset();
+            const toast = document.getElementById('formSuccessToast');
+            toast.textContent = translations[document.documentElement.lang].toast;
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 3000);
+          }
+        } catch (error) {
+          alert('Form submission error');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
