@@ -3,29 +3,29 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Rising Star Manager — competition management platform" />
-  <meta name="keywords" content="competition management, registration, schedule, judging, results, sports, ristar, rising star, rising star manager, competition, israel" />
+  <meta name="description" content="Contact Rising Star Manager" />
+  <meta name="keywords" content="contact, competition management, support, help" />
   <meta name="author" content="Rising Star Manager Team" />
   <meta name="theme-color" content="#0c57ab">
-  <link rel="canonical" href="https://ristar.co/" />
+  <link rel="canonical" href="https://ristar.co/contact" />
 
   <!-- ICON -->
   <link rel="icon" href="icon.ico" type="image/x-icon" />
 
   <!-- Open Graph -->
-  <meta property="og:title" content="Rising Star Manager" />
-  <meta property="og:description" content="Competition management platform. Registration, scheduling, judging and more." />
+  <meta property="og:title" content="Contact - Rising Star Manager" />
+  <meta property="og:description" content="Contact our competition management platform team." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://ristar.co/" />
+  <meta property="og:url" content="https://ristar.co/contact" />
   <meta property="og:image" content="https://ristar.co/og-image.png" />
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Rising Star Manager" />
-  <meta name="twitter:description" content="Competition management platform. Registration, scheduling, judging and more." />
+  <meta name="twitter:title" content="Contact - Rising Star Manager" />
+  <meta name="twitter:description" content="Contact our competition management platform team." />
   <meta name="twitter:image" content="https://ristar.co/twitter-image.png" />
 
-  <title>Rising Star Manager</title>
+  <title>Contact - Rising Star Manager</title>
 
   <link href="https://fonts.googleapis.com/css2?family=Arimo:wght@400;700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
 
@@ -297,109 +297,140 @@
       transform: rotate(-45deg) translate(7px, -6px);
     }
 
-    /* Other styles */
-    .div-start {
-      background-color: #0c57ab;
-      padding: 20px;
-      border-radius: 10px;
-      display: inline-block;
-    }
-
-    header {
-      position: relative;
-      height: 100vh;
-      overflow: hidden;
-    }
-
-    .video-bg {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      z-index: 0;
-    }
-
-    .header-content {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(12, 87, 171, 0.3);
-      z-index: 1;
+    /* Main content */
+    .main-content {
+      padding-top: 80px;
+      min-height: calc(100vh - 160px);
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      text-align: center;
-      padding: 30px 20px;
-      box-sizing: border-box;
     }
 
-    .logo {
-      max-height: 80px;
-      margin-bottom: 20px;
-    }
-
-    h1 {
-      margin: 0;
-      font-size: 2.5rem;
-    }
-
-    .tagline {
-      font-size: 1.5rem;
-      margin-top: 10px;
-      padding: 10px;
-      border-radius: 6px;
-      max-width: 600px;
-    }
-
-    section {
-      padding: 40px 20px;
-      max-width: 900px;
-      margin: 100px auto 40px auto;
-      background: #fff;
+    .contact-container {
+      background: white;
       color: #1c1c1c;
       border-radius: 12px;
-      box-sizing: border-box;
+      padding: 40px;
+      max-width: 800px;
+      width: 90%;
+      margin: 20px auto;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
     }
 
-    .description, .services {
-      font-size: 1.2rem;
-      line-height: 1.6;
-      margin-bottom: 40px;
+    .contact-header {
       text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .contact-header h1 {
+      color: #0c57ab;
+      margin-bottom: 15px;
+    }
+
+    .contact-methods {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      margin-bottom: 40px;
+    }
+
+    .contact-method {
+      flex: 1;
+      min-width: 250px;
+      background: #f8f9fa;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+
+    .contact-method h3 {
+      color: #0c57ab;
+      margin-top: 0;
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .contact-method h3 img {
+      width: 24px;
+      height: 24px;
+    }
+
+    .contact-method p {
+      margin: 10px 0;
+    }
+
+    .contact-method a {
+      color: #0c57ab;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+
+    .contact-method a:hover {
+      color: #094a7a;
+      text-decoration: underline;
     }
 
     .contact-form {
-      text-align: center;
-      margin-top: 40px;
+      margin-top: 30px;
     }
 
     .contact-form h2 {
-      margin-bottom: 20px;
+      text-align: center;
       color: #0c57ab;
+      margin-bottom: 20px;
     }
 
     .contact-form form {
-      max-width: 600px;
-      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .contact-form .form-group {
+      margin-bottom: 15px;
+    }
+
+    .contact-form .form-group.full-width {
+      grid-column: span 2;
+    }
+
+    .contact-form label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+      color: #333;
     }
 
     .contact-form input,
-    .contact-form textarea {
+    .contact-form textarea,
+    .contact-form select {
       width: 100%;
       padding: 12px;
-      margin-bottom: 15px;
-      border: 1px solid #ccc;
+      border: 1px solid #ddd;
       border-radius: 6px;
       font-size: 1rem;
       box-sizing: border-box;
+      transition: border-color 0.3s;
+    }
+
+    .contact-form input:focus,
+    .contact-form textarea:focus,
+    .contact-form select:focus {
+      border-color: #0c57ab;
+      outline: none;
+    }
+
+    .contact-form textarea {
+      min-height: 150px;
+      resize: vertical;
     }
 
     .contact-form button {
+      grid-column: span 2;
       padding: 12px 24px;
       background-color: #0c57ab;
       color: #fff;
@@ -410,10 +441,8 @@
       transition: background-color 0.3s ease;
     }
 
-    .contact-form button:hover,
-    .contact-form button:focus {
+    .contact-form button:hover {
       background-color: #094a7a;
-      outline: none;
     }
 
     .form-success-toast {
@@ -449,23 +478,91 @@
       overflow: hidden;
     }
 
+/* Contact Card Styles */
+.business-card-container {
+  perspective: 1000px;
+  width: 300px;
+  height: 200px;
+  margin: 20px auto;
+}
+
+.business-card {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.8s;
+  cursor: pointer;
+}
+
+.business-card.flipped {
+  transform: rotateY(180deg);
+}
+
+.card-face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+  box-sizing: border-box;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}
+
+.card-back {
+  transform: rotateY(180deg);
+  background: linear-gradient(135deg, #c3cfe2 0%, #f5f7fa 100%);
+}
+
+.logo-container {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.logo-container img {
+  max-height: 70px;
+  max-width: 100px;
+  object-fit: contain;
+}
+
+.contact-info {
+  text-align: center;
+  font-family: 'Arimo', 'Montserrat', sans-serif;
+}
+
+.contact-info h2 {
+  margin: 10px 0;
+  color: #333;
+  font-size: 1.2rem;
+}
+
+.contact-info p {
+  margin: 5px 0;
+  color: #555;
+  font-size: 0.9rem;
+}
+
+.click-hint {
+  margin-top: 10px;
+  font-size: 12px;
+  color: #666;
+  font-style: italic;
+}
+
+@media (max-width: 768px) {
+  .business-card-container {
+    width: 320px;
+  }
+}
+
     /* Responsiveness */
-    @media (max-width: 900px) {
-      section {
-        margin: 80px 15px 30px 15px;
-        padding: 30px 15px;
-      }
-
-      h1 {
-        font-size: 2rem;
-      }
-
-      .tagline {
-        font-size: 1.3rem;
-        max-width: 100%;
-      }
-    }
-
     @media (max-width: 768px) {
       .hamburger {
         display: block;
@@ -474,32 +571,37 @@
       .nav-links {
         display: none;
       }
-    }
 
-    @media (max-width: 600px) {
-      h1 {
-        font-size: 1.8rem;
+      .contact-container {
+        padding: 30px 20px;
       }
 
-      .tagline {
-        font-size: 1rem;
-        padding: 8px;
+      .contact-methods {
+        flex-direction: column;
+        gap: 20px;
       }
 
-      section {
-        margin: 80px 10px 20px 10px;
-        padding: 20px 15px;
+      .contact-form form {
+        grid-template-columns: 1fr;
       }
 
-      .contact-form input,
-      .contact-form textarea {
-        font-size: 0.9rem;
-        padding: 10px;
+      .contact-form .form-group.full-width {
+        grid-column: span 1;
       }
 
       .contact-form button {
-        padding: 10px 20px;
-        font-size: 0.9rem;
+        grid-column: span 1;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .contact-container {
+        padding: 20px 15px;
+        width: 95%;
+      }
+
+      .contact-header h1 {
+        font-size: 1.8rem;
       }
     }
   </style>
@@ -513,7 +615,6 @@
     </div>
   </div>
 
-  <!-- NAVIGATION -->
   <nav>
     <div class="nav-container">
       <div class="nav-brand">
@@ -524,7 +625,7 @@
       <div class="nav-links">
         <a href="index.html" class="nav-link" id="nav-home">Home</a>
         <a href="contact.html" class="nav-link" id="nav-contact">Contact</a>
-        <a href="pitch.html" class="nav-link" id="nav-pitch">Pitching Presentations</a>
+		<a href="pitch.html" class="nav-link" id="nav-pitch">Pitching Presentations</a>
         <a href="https://results.ristar.co" class="nav-btn" target="_blank" id="nav-results">Results</a>
         <a href="https://registration.ristar.co" class="nav-btn" target="_blank" id="nav-register">Register</a>
         
@@ -552,7 +653,7 @@
         <div class="mobile-menu-content">
           <a href="index.html" class="mobile-link" id="mobile-home">Home</a>
           <a href="contact.html" class="mobile-link" id="mobile-contact">Contact</a>
-          <a href="pitch.html" class="mobile-link" id="mobile-pitch">Pitching Presentation</a>
+		  <a href="pitch.html" class="nav-link" id="nav-pitch">Pitching Presentation</a>
           <a href="https://results.ristar.co" class="mobile-btn" target="_blank" id="mobile-results">Results</a>
           <a href="https://registration.ristar.co" class="mobile-btn" target="_blank" id="mobile-register">Register</a>
           
@@ -571,94 +672,98 @@
       </div>
     </div>
   </nav>
-
   <!-- Overlay -->
   <div class="overlay" id="overlay"></div>
 
   <!-- MAIN CONTENT -->
-  <header>
-    <video autoplay muted loop playsinline class="video-bg" aria-hidden="true" tabindex="-1" preload="none" poster="placeholder.jpg">
-      <source src="header.webm" type="video/webm">
-      <source src="header.mp4" type="video/mp4">
-    </video>
-    <div class="header-content">
-      <div class="div-start">
-        <img src="logo-w.png" alt="Rising Star Manager Logo" class="logo" />
-        <h1 id="main-title">Rising Star Manager</h1>
-        <div class="tagline" id="tagline">Your competition, our system</div>
+  <div class="main-content">
+    <div class="contact-container">
+      <div class="contact-header">
+        <h1 id="contact-title">Contact Us</h1>
+        <p id="contact-subtitle">We'd love to hear from you! Reach out through any of these methods.</p>
       </div>
-    </div>
-  </header>
 
-  <section>
-    <div class="description">
-      <p id="desc-text">
-        Rising Star Manager is a full-service competition management platform.
-      </p>
-    </div>
-    <h2 id="services-title" style="text-align:center; margin-bottom:30px;">How the system works</h2>
-    <div style="display: flex; flex-direction: column; gap: 20px;">
-      <div style="display: flex; align-items: center; gap: 15px;">
-        <img src="https://img.icons8.com/color/48/handshake.png" alt="Agreement" />
-        <span id="step-0">We sign a contract and configure the system for you</span>
-      </div>
-      <div style="display: flex; align-items: center; gap: 15px;">
-        <img src="https://img.icons8.com/color/48/calendar.png" alt="Calendar" />
-        <span id="step-1">We create the event and open registration</span>
-      </div>
-      <div style="display: flex; align-items: center; gap: 15px;">
-        <img src="https://img.icons8.com/color/48/add-user-group-man-man.png" alt="Registration" />
-        <span id="step-2">Participants register online</span>
-      </div>
-      <div style="display: flex; align-items: center; gap: 15px;">
-        <img src="https://img.icons8.com/color/48/clock--v1.png" alt="Schedule" />
-        <span id="step-3">We generate a schedule and distribute by categories</span>
-      </div>
-      <div style="display: flex; align-items: center; gap: 15px;">
-        <img src="https://img.icons8.com/color/48/whistle.png" alt="Judging" />
-        <span id="step-4">Judging is done within the system</span>
-      </div>
-      <div style="display: flex; align-items: center; gap: 15px;">
-        <img src="https://img.icons8.com/color/48/combo-chart--v1.png" alt="Results" />
-        <span id="step-5">The system calculates and updates results in real time</span>
-      </div>
-      <div style="display: flex; align-items: center; gap: 15px;">
-        <img src="https://img.icons8.com/color/48/share-rounded.png" alt="Publishing" />
-        <span id="step-6">We publish final standings and issue certificates</span>
+      <div class="contact-methods">
+  <div class="contact-method">
+    <div class="business-card-container">
+      <div class="business-card" id="businessCard">
+        <div class="card-face card-front">
+          <div class="logo-container">
+            <img src="logo.png" alt="Company Logo">
+            <img src="2mlogo.png" alt="2M Media Logo">
+          </div>
+          <div class="click-hint" id="click-hint-front">Click to view contact details</div>
+        </div>
+        <div class="card-face card-back">
+          <div class="contact-info">
+            <h2>Michael Mokrushov</h2>
+            <p>CEO</p>
+            <p>Tel: <a href="tel:0547798676" id="phone-number">054-779-8676</a></p>
+            <p>Email: <a href="mailto:2mmedia.il@gmail.com" id="email-address">2mmedia.il@gmail.com</a></p>
+            <div class="click-hint" id="click-hint-back">Click to flip back</div>
+          </div>
+        </div>
       </div>
     </div>
+  </div>
+</div>
 
-    <div class="contact-form">
-      <h2 id="form-heading">Contact Us</h2>
-      <p id="form-subtitle">Need more information? <a href="contact.html" style="color: #0c57ab; font-weight: bold;">Visit our contact page</a> or send us a message below.</p>
-      <form id="contactForm" aria-label="Contact form" action="https://formsubmit.co/2mmedia.il@gmail.com" method="POST">
-        <input id="name-field" type="text" name="name" placeholder="Your Name" required aria-required="true" />
-        <input id="email-field" type="email" name="email" placeholder="Your Email" required aria-required="true" />
-        <textarea id="message-field" name="message" rows="5" placeholder="Your Message..." required aria-required="true"></textarea>
-        <input type="text" name="_honey" style="display:none" autocomplete="off" />
-        <input type="hidden" name="_captcha" value="false" />
-        <button id="submit-button" type="submit">Send</button>
-      </form>
-      <div class="form-success-toast" id="formSuccessToast" role="alert" aria-live="assertive" aria-atomic="true">✅ Sent, thank you!</div>
+      <div class="contact-form">
+        <h2 id="form-heading">Send us a message</h2>
+        <form id="contactForm" aria-label="Contact form" action="https://formsubmit.co/2mmedia.il@gmail.com" method="POST">
+          <div class="form-group">
+            <label for="name" id="name-label">Your Name</label>
+            <input type="text" id="name" name="name" required aria-required="true" />
+          </div>
+          
+          <div class="form-group">
+            <label for="email" id="email-label">Your Email</label>
+            <input type="email" id="email" name="email" required aria-required="true" />
+          </div>
+          
+          <div class="form-group full-width">
+            <label for="subject" id="subject-label">Subject</label>
+            <input type="text" id="subject" name="subject" required aria-required="true" />
+          </div>
+          
+          <div class="form-group full-width">
+            <label for="message" id="message-label">Your Message</label>
+            <textarea id="message" name="message" required aria-required="true"></textarea>
+          </div>
+          
+          <input type="text" name="_honey" style="display:none" autocomplete="off" />
+          <input type="hidden" name="_captcha" value="false" />
+          
+          <button type="submit" id="submit-button">Send Message</button>
+        </form>
+      </div>
     </div>
-  </section>
+  </div>
 
   <footer>
     <div id="footer-text">© 2025 Rising Star Manager. All rights reserved.</div>
   </footer>
 
+  <div class="form-success-toast" id="formSuccessToast" role="alert" aria-live="assertive" aria-atomic="true">✅ Message sent successfully!</div>
+
   <script>
-    // Simplified loader hiding logic
+    // Simplified and reliable loader hiding logic
     function hideLoader() {
       const loader = document.getElementById('loader');
+      const overlay = document.getElementById('overlay');
+      
       if (loader) {
+        // Add class for fade-out animation
         loader.classList.add('hidden');
+        
+        // Remove preload class from body
         document.body.classList.remove('preload');
         document.body.classList.add('loaded');
         
+        // After animation completes, remove loader completely
         setTimeout(() => {
           loader.remove();
-          document.getElementById('overlay').style.display = 'none';
+          if (overlay) overlay.style.display = 'none';
         }, 700);
       }
     }
@@ -667,25 +772,12 @@
     window.addEventListener('load', hideLoader);
 
     // Fallback in case load event doesn't fire
-    setTimeout(hideLoader, 2000);
+    setTimeout(hideLoader, 3000);
 
-    // Rest of your existing JavaScript code...
     const translations = {
       ru: {
         lang: "ru", dir: "ltr",
-        title: "Rising Star Manager",
-        tagline: "Ваши соревнования — наша система",
-        description: "Rising Star Manager — универсальный сервис для полного менеджмента соревнований.",
-        servicesTitle: "Как работает система",
-        servicesSteps: [
-          "Заключаем договор и настраиваем систему под вас",
-          "Создаём событие и открываем регистрацию",
-          "Участники регистрируются онлайн",
-          "Формируем расписание и распределяем по категориям",
-          "Судейство проводится в системе",
-          "Система считает и обновляет результаты в реальном времени",
-          "Публикуем итоги и выдаём сертификаты"
-        ],
+        title: "Контакты - Rising Star Manager",
         nav: { 
           home: "Главная", 
           contact: "Контакты",
@@ -693,32 +785,30 @@
           results: "Результаты",
           register: "Регистрация"
         },
-        form: { 
-          heading: "Связаться с нами", 
-          subtitle: "Нужна дополнительная информация? <a href='contact.html' style='color: #0c57ab; font-weight: bold;'>Посетите страницу контактов</a> или отправьте нам сообщение ниже.",
-          name: "Ваше имя", 
-          email: "Ваш Email", 
-          message: "Ваше сообщение...", 
-          send: "Отправить" 
+        contact: {
+          title: "Свяжитесь с нами",
+          subtitle: "Мы будем рады помочь вам! Используйте любой удобный способ связи.",
+          card: {
+            name: "Михаил Мокрушов",
+            position: "CEO",
+            clickFront: "Нажмите, чтобы увидеть контакты",
+            clickBack: "Нажмите, чтобы вернуться"
+          },
+          form: {
+            heading: "Отправить сообщение",
+            name: "Ваше имя",
+            email: "Ваш Email",
+            subject: "Тема",
+            message: "Ваше сообщение",
+            submit: "Отправить"
+          },
+          toast: "✅ Сообщение отправлено успешно!"
         },
-        footer: "Все права защищены.",
-        toast: "✅ Отправлено, спасибо!"
+        footer: "Все права защищены."
       },
       en: {
         lang: "en", dir: "ltr",
-        title: "Rising Star Manager",
-        tagline: "Your competition, our system",
-        description: "Rising Star Manager is a full-service competition management platform.",
-        servicesTitle: "How the system works",
-        servicesSteps: [
-          "We sign a contract and configure the system for you",
-          "We create the event and open registration",
-          "Participants register online",
-          "We generate a schedule and distribute by categories",
-          "Judging is done within the system",
-          "The system calculates and updates results in real time",
-          "We publish final standings and issue certificates"
-        ],
+        title: "Contact - Rising Star Manager",
         nav: { 
           home: "Home", 
           contact: "Contact",
@@ -726,49 +816,57 @@
           results: "Results",
           register: "Register"
         },
-        form: { 
-          heading: "Contact Us", 
-          subtitle: "Need more information? <a href='contact.html' style='color: #0c57ab; font-weight: bold;'>Visit our contact page</a> or send us a message below.",
-          name: "Your Name", 
-          email: "Your Email", 
-          message: "Your Message...", 
-          send: "Send" 
+        contact: {
+          title: "Contact Us",
+          subtitle: "We'd love to hear from you! Reach out through any of these methods.",
+          card: {
+            name: "Michael Mokrushov",
+            position: "CEO",
+            clickFront: "Click to view contact details",
+            clickBack: "Click to flip back"
+          },
+          form: {
+            heading: "Send us a message",
+            name: "Your Name",
+            email: "Your Email",
+            subject: "Subject",
+            message: "Your Message",
+            submit: "Send Message"
+          },
+          toast: "✅ Message sent successfully!"
         },
-        footer: "All rights reserved.",
-        toast: "✅ Sent, thank you!"
+        footer: "All rights reserved."
       },
       he: {
         lang: "he", dir: "rtl",
-        title: "Rising Star Manager",
-        tagline: "התחרות שלכם – המערכת שלנו",
-        description: "Rising Star Manager הוא שירות לניהול תחרויות מקצה לקצה.",
-        servicesTitle: "איך המערכת פועלת",
-        servicesSteps: [
-          "חותמים על חוזה ומגדירים את המערכת לפי הצרכים שלכם",
-          "יוצרים אירוע ופותחים את ההרשמה",
-          "המשתתפים נרשמים אונליין",
-          "יוצרים לוח זמנים ומחלקים לפי קטגוריות",
-          "השיפוט מתבצע במערכת",
-          "התוצאות מתעדכנות בזמן אמת",
-          "מפרסמים את התוצאות ומנפיקים תעודות"
-        ],
+        title: "יצירת קשר - Rising Star Manager",
         nav: { 
           home: "בית", 
           contact: "יצירת קשר",
-          pitch: "פרזנטציה",
+          pitch: "פרזנטציית המוצר",
           results: "תוצאות",
           register: "הרשמה"
         },
-        form: { 
-          heading: "צור קשר", 
-          subtitle: "צריכים מידע נוסף? <a href='contact.html' style='color: #0c57ab; font-weight: bold;'>עברו לדף יצירת הקשר</a> או שלחו לנו הודעה למטה.",
-          name: "שמך", 
-          email: "האימייל שלך", 
-          message: "ההודעה שלך...", 
-          send: "שלח" 
+        contact: {
+          title: "צרו קשר",
+          subtitle: "נשמח לשמוע מכם! אפשר ליצור איתנו קשר בכל אחת מהדרכים הבאות.",
+          card: {
+            name: "מיכאל מוקרושוב",
+            position: "מנכ\"ל",
+            clickFront: "לחץ כדי לראות פרטי יצירת קשר",
+            clickBack: "לחץ כדי לחזור"
+          },
+          form: {
+            heading: "שלחו לנו הודעה",
+            name: "שמך",
+            email: "האימייל שלך",
+            subject: "נושא",
+            message: "ההודעה שלך",
+            submit: "שלח הודעה"
+          },
+          toast: "✅ ההודעה נשלחה בהצלחה!"
         },
-        footer: "כל הזכויות שמורות.",
-        toast: "✅ נשלח, תודה!"
+        footer: "כל הזכויות שמורות."
       }
     };
 
@@ -786,19 +884,6 @@
       document.documentElement.dir = t.dir;
       document.title = t.title;
 
-      // Update main content
-      document.getElementById('main-title').innerText = t.title;
-      document.getElementById('tagline').innerText = t.tagline;
-      document.getElementById('desc-text').innerText = t.description;
-      document.getElementById('services-title').innerText = t.servicesTitle;
-      
-      // Update steps
-      const serviceSteps = t.servicesSteps;
-      for (let i = 0; i < serviceSteps.length; i++) {
-        const stepEl = document.getElementById(`step-${i}`);
-        if (stepEl) stepEl.innerText = serviceSteps[i];
-      }
-
       // Update navigation
       document.getElementById('nav-home').innerText = t.nav.home;
       document.getElementById('nav-contact').innerText = t.nav.contact;
@@ -809,17 +894,24 @@
       // Update mobile navigation
       document.getElementById('mobile-home').innerText = t.nav.home;
       document.getElementById('mobile-contact').innerText = t.nav.contact;
-      document.getElementById('mobile-pitch').innerText = t.nav.pitch;
       document.getElementById('mobile-results').innerText = t.nav.results;
       document.getElementById('mobile-register').innerText = t.nav.register;
 
+      // Update contact section
+      document.getElementById('contact-title').innerText = t.contact.title;
+      document.getElementById('contact-subtitle').innerText = t.contact.subtitle;
+
+      // Update contact card
+      document.getElementById('click-hint-front').innerText = t.contact.card.clickFront;
+      document.getElementById('click-hint-back').innerText = t.contact.card.clickBack;
+
       // Update form
-      document.getElementById('form-heading').innerText = t.form.heading;
-      document.getElementById('form-subtitle').innerHTML = t.form.subtitle;
-      document.getElementById('name-field').placeholder = t.form.name;
-      document.getElementById('email-field').placeholder = t.form.email;
-      document.getElementById('message-field').placeholder = t.form.message;
-      document.getElementById('submit-button').innerText = t.form.send;
+      document.getElementById('form-heading').innerText = t.contact.form.heading;
+      document.getElementById('name-label').innerText = t.contact.form.name;
+      document.getElementById('email-label').innerText = t.contact.form.email;
+      document.getElementById('subject-label').innerText = t.contact.form.subject;
+      document.getElementById('message-label').innerText = t.contact.form.message;
+      document.getElementById('submit-button').innerText = t.contact.form.submit;
 
       // Update footer
       document.getElementById('footer-text').innerText = `© 2025 Rising Star Manager. ${t.footer}`;
@@ -873,7 +965,7 @@
         const data = new FormData(form);
         
         try {
-          const response = await fetch(form.action, {
+          const response = await fetch('https://formsubmit.co/ajax/2mmedia.il@gmail.com', {
             method: 'POST',
             body: data,
             headers: { 'Accept': 'application/json' }
@@ -882,7 +974,7 @@
           if (response.ok) {
             form.reset();
             const toast = document.getElementById('formSuccessToast');
-            toast.textContent = translations[document.documentElement.lang].toast;
+            toast.textContent = translations[document.documentElement.lang].contact.toast;
             toast.classList.add('show');
             setTimeout(() => toast.classList.remove('show'), 3000);
           }
@@ -890,6 +982,20 @@
           alert('Form submission error');
         }
       });
+
+      // Contact card functionality
+      const card = document.getElementById('businessCard');
+      if (card) {
+        card.addEventListener('click', function() {
+          this.classList.toggle('flipped');
+        });
+        
+        // For mobile devices
+        card.addEventListener('touchstart', function(e) {
+          e.preventDefault();
+          this.classList.toggle('flipped');
+        }, {passive: false});
+      }
     });
   </script>
 </body>
