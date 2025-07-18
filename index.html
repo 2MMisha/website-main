@@ -1,896 +1,142 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Rising Star Manager — competition management platform" />
-  <meta name="keywords" content="competition management, registration, schedule, judging, results, sports, ristar, rising star, rising star manager, competition, israel" />
-  <meta name="author" content="Rising Star Manager Team" />
-  <meta name="theme-color" content="#0c57ab">
-  <link rel="canonical" href="https://ristar.co/" />
-
-  <!-- ICON -->
-  <link rel="icon" href="icon.ico" type="image/x-icon" />
-
-  <!-- Open Graph -->
-  <meta property="og:title" content="Rising Star Manager" />
-  <meta property="og:description" content="Competition management platform. Registration, scheduling, judging and more." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://ristar.co/" />
-  <meta property="og:image" content="https://ristar.co/og-image.png" />
-
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Rising Star Manager" />
-  <meta name="twitter:description" content="Competition management platform. Registration, scheduling, judging and more." />
-  <meta name="twitter:image" content="https://ristar.co/twitter-image.png" />
-
-  <title>Rising Star Manager</title>
-
-  <link href="https://fonts.googleapis.com/css2?family=Arimo:wght@400;700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
-
-  <style>
-    /* LOADER */
-    #loader {
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background-color: #0c57ab;
-      color: white;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      z-index: 2000;
-      opacity: 1;
-      transition: opacity 0.7s ease;
-    }
-    #loader.hidden {
-      opacity: 0;
-      pointer-events: none;
-    }
-
-    /* Hide content before load */
-    body.preload {
-      overflow: hidden;
-    }
-    body.preload > *:not(#loader) {
-      opacity: 0;
-      visibility: hidden;
-    }
-    body.loaded > *:not(#loader) {
-      opacity: 1;
-      visibility: visible;
-      transition: opacity 0.5s ease, visibility 0.5s ease;
-    }
-
-    .progress-bar {
-      width: 80%;
-      max-width: 400px;
-      height: 8px;
-      background: rgba(255,255,255,0.3);
-      border-radius: 4px;
-      overflow: hidden;
-      margin-top: 15px;
-      box-shadow: 0 0 10px rgba(255,255,255,0.4);
-    }
-
-    .progress-bar-inner {
-      height: 100%;
-      width: 0;
-      background: #fff;
-      border-radius: 4px;
-      animation: progressLoad 3s linear forwards;
-    }
-
-    @keyframes progressLoad {
-      0% { width: 0; }
-      100% { width: 100%; }
-    }
-
-    /* Main styles */
-    html, body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Arimo', 'Montserrat', sans-serif;
-      background-color: #0c57ab;
-      color: #fff;
-      height: 100%;
-    }
-
-    /* Navigation */
-    nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      background-color: #0c57ab;
-      z-index: 1000;
-      padding: 10px 20px;
-      box-sizing: border-box;
-    }
-
-    .nav-container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .nav-brand img {
-      height: 40px;
-      cursor: pointer;
-      transition: transform 0.3s ease;
-    }
-
-    .nav-brand img:hover {
-      transform: scale(1.05);
-    }
-
-    /* Navigation links */
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 15px;
-    }
-
-    .nav-link {
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-      white-space: nowrap;
-      padding: 8px 12px;
-      border-radius: 5px;
-      transition: background 0.3s ease;
-    }
-
-    .nav-link:hover {
-      background: rgba(255,255,255,0.1);
-    }
-
-    /* Buttons */
-    .nav-btn {
-      background: white;
-      color: #0c57ab;
-      padding: 8px 15px;
-      border-radius: 5px;
-      font-weight: bold;
-      text-decoration: none;
-      transition: background 0.3s ease;
-    }
-
-    .nav-btn:hover {
-      background: #e6e6e6;
-    }
-
-    /* Language buttons */
-    .lang-buttons {
-      display: flex;
-      gap: 5px;
-      margin-left: 15px;
-    }
-    
-    .lang-btn {
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: 5px;
-    }
-    
-    .lang-btn img {
-      width: 24px;
-      height: 16px;
-      border-radius: 2px;
-      transition: transform 0.2s;
-    }
-    
-    .lang-btn:hover img {
-      transform: scale(1.1);
-    }
-
-    /* Hamburger menu */
-    .hamburger {
-      display: none;
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: 5px;
-      z-index: 1001;
-    }
-
-    .hamburger span {
-      display: block;
-      width: 25px;
-      height: 3px;
-      background: #fff;
-      margin: 5px 0;
-      transition: all 0.3s ease;
-    }
-
-    /* Mobile menu */
-    .mobile-menu {
-      position: fixed;
-      top: 0;
-      right: -100%;
-      width: 80%;
-      max-width: 300px;
-      height: 100vh;
-      background: #0c57ab;
-      z-index: 1000;
-      transition: right 0.3s ease;
-      padding-top: 70px;
-      box-shadow: -5px 0 15px rgba(0,0,0,0.2);
-    }
-
-    .mobile-menu.active {
-      right: 0;
-    }
-
-    .mobile-menu-content {
-      display: flex;
-      flex-direction: column;
-      height: calc(100% - 70px);
-      padding: 20px;
-    }
-
-    .mobile-link {
-      color: white;
-      padding: 15px 0;
-      text-decoration: none;
-      font-size: 1.1rem;
-      border-bottom: 1px solid rgba(255,255,255,0.1);
-    }
-
-    .mobile-btn {
-      background: white;
-      color: #0c57ab;
-      margin: 15px 0;
-      border-radius: 5px;
-      text-align: center;
-      font-weight: bold;
-      padding: 12px;
-    }
-
-    /* Language buttons in mobile menu */
-    .mobile-lang-switcher {
-      margin-top: auto;
-      padding-top: 20px;
-      display: flex;
-      justify-content: center;
-      gap: 15px;
-    }
-
-    /* Overlay */
-    .overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.5);
-      z-index: 999;
-      opacity: 0;
-      visibility: hidden;
-      transition: all 0.3s ease;
-    }
-    
-    .overlay.active {
-      opacity: 1;
-      visibility: visible;
-    }
-
-    /* Hide overlay after load */
-    body.loaded .overlay {
-      display: none;
-    }
-
-    /* Hamburger animations */
-    .hamburger.active span:nth-child(1) {
-      transform: rotate(45deg) translate(5px, 5px);
-    }
-    
-    .hamburger.active span:nth-child(2) {
-      opacity: 0;
-    }
-    
-    .hamburger.active span:nth-child(3) {
-      transform: rotate(-45deg) translate(7px, -6px);
-    }
-
-    /* Other styles */
-    .div-start {
-      background-color: #0c57ab;
-      padding: 20px;
-      border-radius: 10px;
-      display: inline-block;
-    }
-
-    header {
-      position: relative;
-      height: 100vh;
-      overflow: hidden;
-    }
-
-    .video-bg {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      z-index: 0;
-    }
-
-    .header-content {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(12, 87, 171, 0.3);
-      z-index: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 30px 20px;
-      box-sizing: border-box;
-    }
-
-    .logo {
-      max-height: 80px;
-      margin-bottom: 20px;
-    }
-
-    h1 {
-      margin: 0;
-      font-size: 2.5rem;
-    }
-
-    .tagline {
-      font-size: 1.5rem;
-      margin-top: 10px;
-      padding: 10px;
-      border-radius: 6px;
-      max-width: 600px;
-    }
-
-    section {
-      padding: 40px 20px;
-      max-width: 900px;
-      margin: 100px auto 40px auto;
-      background: #fff;
-      color: #1c1c1c;
-      border-radius: 12px;
-      box-sizing: border-box;
-    }
-
-    .description, .services {
-      font-size: 1.2rem;
-      line-height: 1.6;
-      margin-bottom: 40px;
-      text-align: center;
-    }
-
-    .contact-form {
-      text-align: center;
-      margin-top: 40px;
-    }
-
-    .contact-form h2 {
-      margin-bottom: 20px;
-      color: #0c57ab;
-    }
-
-    .contact-form form {
-      max-width: 600px;
-      margin: 0 auto;
-    }
-
-    .contact-form input,
-    .contact-form textarea {
-      width: 100%;
-      padding: 12px;
-      margin-bottom: 15px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      font-size: 1rem;
-      box-sizing: border-box;
-    }
-
-    .contact-form button {
-      padding: 12px 24px;
-      background-color: #0c57ab;
-      color: #fff;
-      border: none;
-      border-radius: 6px;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-
-    .contact-form button:hover,
-    .contact-form button:focus {
-      background-color: #094a7a;
-      outline: none;
-    }
-
-    .form-success-toast {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background-color: #28a745;
-      color: #fff;
-      padding: 15px 20px;
-      border-radius: 8px;
-      font-size: 1rem;
-      box-shadow: 0 0 12px rgba(0, 0, 0, 0.2);
-      z-index: 9999;
-      display: none;
-      opacity: 0;
-      transition: opacity 0.5s ease;
-    }
-
-    .form-success-toast.show {
-      display: block;
-      opacity: 1;
-    }
-
-    footer {
-      background-color: #0c57ab;
-      text-align: center;
-      padding: 20px;
-      font-size: 0.9rem;
-      color: #fff;
-    }
-
-    .no-scroll {
-      overflow: hidden;
-    }
-
-    /* Responsiveness */
-    @media (max-width: 900px) {
-      section {
-        margin: 80px 15px 30px 15px;
-        padding: 30px 15px;
-      }
-
-      h1 {
-        font-size: 2rem;
-      }
-
-      .tagline {
-        font-size: 1.3rem;
-        max-width: 100%;
-      }
-    }
-
-    @media (max-width: 768px) {
-      .hamburger {
-        display: block;
-      }
-      
-      .nav-links {
-        display: none;
-      }
-    }
-
-    @media (max-width: 600px) {
-      h1 {
-        font-size: 1.8rem;
-      }
-
-      .tagline {
-        font-size: 1rem;
-        padding: 8px;
-      }
-
-      section {
-        margin: 80px 10px 20px 10px;
-        padding: 20px 15px;
-      }
-
-      .contact-form input,
-      .contact-form textarea {
-        font-size: 0.9rem;
-        padding: 10px;
-      }
-
-      .contact-form button {
-        padding: 10px 20px;
-        font-size: 0.9rem;
-      }
-    }
-  </style>
-</head>
-<body class="preload">
-  <!-- LOADER -->
-  <div id="loader" role="alert" aria-live="assertive" aria-busy="true" aria-label="Loading website">
-    <div>Loading...</div>
-    <div class="progress-bar" aria-hidden="true">
-      <div class="progress-bar-inner"></div>
-    </div>
-  </div>
-
-  <!-- NAVIGATION -->
-  <nav>
-    <div class="nav-container">
-      <div class="nav-brand">
-        <img src="logo-w.png" alt="Rising Star Logo" onclick="window.location.href='index.html'" />
-      </div>
-      
-      <!-- Desktop navigation -->
-      <div class="nav-links">
-        <a href="index.html" class="nav-link" id="nav-home">Home</a>
-        <a href="contact.html" class="nav-link" id="nav-contact">Contact</a>
-        <a href="pitch.html" class="nav-link" id="nav-pitch">Pitching Presentations</a>
-        <a href="https://results.ristar.co" class="nav-btn" target="_blank" id="nav-results">Results</a>
-        <a href="https://registration.ristar.co" class="nav-btn" target="_blank" id="nav-register">Register</a>
-        
-        <div class="lang-buttons">
-          <button class="lang-btn" onclick="switchLang('en')" aria-label="English">
-            <img src="https://flagcdn.com/w40/gb.png" alt="English" />
-          </button>
-          <button class="lang-btn" onclick="switchLang('ru')" aria-label="Русский">
-            <img src="https://flagcdn.com/w40/ru.png" alt="Русский" />
-          </button>
-          <button class="lang-btn" onclick="switchLang('he')" aria-label="עברית">
-            <img src="https://flagcdn.com/w40/il.png" alt="עברית" />
-          </button>
-        </div>
-      </div>
-
-      <button class="hamburger" id="hamburger" aria-expanded="false" aria-label="Menu">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-
-      <!-- Mobile menu -->
-      <div class="mobile-menu" id="mobileMenu">
-        <div class="mobile-menu-content">
-          <a href="index.html" class="mobile-link" id="mobile-home">Home</a>
-          <a href="contact.html" class="mobile-link" id="mobile-contact">Contact</a>
-          <a href="pitch.html" class="mobile-link" id="mobile-pitch">Pitching Presentation</a>
-          <a href="https://results.ristar.co" class="mobile-btn" target="_blank" id="mobile-results">Results</a>
-          <a href="https://registration.ristar.co" class="mobile-btn" target="_blank" id="mobile-register">Register</a>
-          
-          <div class="mobile-lang-switcher">
-            <button class="lang-btn" onclick="switchLang('en')" aria-label="English">
-              <img src="https://flagcdn.com/w40/gb.png" alt="English" />
-            </button>
-            <button class="lang-btn" onclick="switchLang('ru')" aria-label="Русский">
-              <img src="https://flagcdn.com/w40/ru.png" alt="Русский" />
-            </button>
-            <button class="lang-btn" onclick="switchLang('he')" aria-label="עברית">
-              <img src="https://flagcdn.com/w40/il.png" alt="עברית" />
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </nav>
-
-  <!-- Overlay -->
-  <div class="overlay" id="overlay"></div>
-
-  <!-- MAIN CONTENT -->
-  <header>
-    <video autoplay muted loop playsinline class="video-bg" aria-hidden="true" tabindex="-1" preload="none" poster="placeholder.jpg">
-      <source src="header.webm" type="video/webm">
-      <source src="header.mp4" type="video/mp4">
-    </video>
-    <div class="header-content">
-      <div class="div-start">
-        <img src="logo-w.png" alt="Rising Star Manager Logo" class="logo" />
-        <h1 id="main-title">Rising Star Manager</h1>
-        <div class="tagline" id="tagline">Your competition, our system</div>
-      </div>
-    </div>
-  </header>
-
-  <section>
-    <div class="description">
-      <p id="desc-text">
-        Rising Star Manager is a full-service competition management platform.
-      </p>
-    </div>
-    <h2 id="services-title" style="text-align:center; margin-bottom:30px;">How the system works</h2>
-    <div style="display: flex; flex-direction: column; gap: 20px;">
-      <div style="display: flex; align-items: center; gap: 15px;">
-        <img src="https://img.icons8.com/color/48/handshake.png" alt="Agreement" />
-        <span id="step-0">We sign a contract and configure the system for you</span>
-      </div>
-      <div style="display: flex; align-items: center; gap: 15px;">
-        <img src="https://img.icons8.com/color/48/calendar.png" alt="Calendar" />
-        <span id="step-1">We create the event and open registration</span>
-      </div>
-      <div style="display: flex; align-items: center; gap: 15px;">
-        <img src="https://img.icons8.com/color/48/add-user-group-man-man.png" alt="Registration" />
-        <span id="step-2">Participants register online</span>
-      </div>
-      <div style="display: flex; align-items: center; gap: 15px;">
-        <img src="https://img.icons8.com/color/48/clock--v1.png" alt="Schedule" />
-        <span id="step-3">We generate a schedule and distribute by categories</span>
-      </div>
-      <div style="display: flex; align-items: center; gap: 15px;">
-        <img src="https://img.icons8.com/color/48/whistle.png" alt="Judging" />
-        <span id="step-4">Judging is done within the system</span>
-      </div>
-      <div style="display: flex; align-items: center; gap: 15px;">
-        <img src="https://img.icons8.com/color/48/combo-chart--v1.png" alt="Results" />
-        <span id="step-5">The system calculates and updates results in real time</span>
-      </div>
-      <div style="display: flex; align-items: center; gap: 15px;">
-        <img src="https://img.icons8.com/color/48/share-rounded.png" alt="Publishing" />
-        <span id="step-6">We publish final standings and issue certificates</span>
-      </div>
-    </div>
-
-    <div class="contact-form">
-      <h2 id="form-heading">Contact Us</h2>
-      <p id="form-subtitle">Need more information? <a href="contact.html" style="color: #0c57ab; font-weight: bold;">Visit our contact page</a> or send us a message below.</p>
-      <form id="contactForm" aria-label="Contact form" action="https://formsubmit.co/2mmedia.il@gmail.com" method="POST">
-        <input id="name-field" type="text" name="name" placeholder="Your Name" required aria-required="true" />
-        <input id="email-field" type="email" name="email" placeholder="Your Email" required aria-required="true" />
-        <textarea id="message-field" name="message" rows="5" placeholder="Your Message..." required aria-required="true"></textarea>
-        <input type="text" name="_honey" style="display:none" autocomplete="off" />
-        <input type="hidden" name="_captcha" value="false" />
-        <button id="submit-button" type="submit">Send</button>
-      </form>
-      <div class="form-success-toast" id="formSuccessToast" role="alert" aria-live="assertive" aria-atomic="true">✅ Sent, thank you!</div>
-    </div>
-  </section>
-
-  <footer>
-    <div id="footer-text">© 2025 Rising Star Manager. All rights reserved.</div>
-  </footer>
-
-  <script>
-    // Simplified loader hiding logic
-    function hideLoader() {
-      const loader = document.getElementById('loader');
-      if (loader) {
-        loader.classList.add('hidden');
-        document.body.classList.remove('preload');
-        document.body.classList.add('loaded');
-        
-        setTimeout(() => {
-          loader.remove();
-          document.getElementById('overlay').style.display = 'none';
-        }, 700);
-      }
-    }
-
-    // Try to hide loader when page is fully loaded
-    window.addEventListener('load', hideLoader);
-
-    // Fallback in case load event doesn't fire
-    setTimeout(hideLoader, 2000);
-
-    // Rest of your existing JavaScript code...
-    const translations = {
-      ru: {
-        lang: "ru", dir: "ltr",
-        title: "Rising Star Manager",
-        tagline: "Ваши соревнования — наша система",
-        description: "Rising Star Manager — универсальный сервис для полного менеджмента соревнований.",
-        servicesTitle: "Как работает система",
-        servicesSteps: [
-          "Заключаем договор и настраиваем систему под вас",
-          "Создаём событие и открываем регистрацию",
-          "Участники регистрируются онлайн",
-          "Формируем расписание и распределяем по категориям",
-          "Судейство проводится в системе",
-          "Система считает и обновляет результаты в реальном времени",
-          "Публикуем итоги и выдаём сертификаты"
-        ],
-        nav: { 
-          home: "Главная", 
-          contact: "Контакты",
-          pitch: "Презентация",
-          results: "Результаты",
-          register: "Регистрация"
-        },
-        form: { 
-          heading: "Связаться с нами", 
-          subtitle: "Нужна дополнительная информация? <a href='contact.html' style='color: #0c57ab; font-weight: bold;'>Посетите страницу контактов</a> или отправьте нам сообщение ниже.",
-          name: "Ваше имя", 
-          email: "Ваш Email", 
-          message: "Ваше сообщение...", 
-          send: "Отправить" 
-        },
-        footer: "Все права защищены.",
-        toast: "✅ Отправлено, спасибо!"
-      },
-      en: {
-        lang: "en", dir: "ltr",
-        title: "Rising Star Manager",
-        tagline: "Your competition, our system",
-        description: "Rising Star Manager is a full-service competition management platform.",
-        servicesTitle: "How the system works",
-        servicesSteps: [
-          "We sign a contract and configure the system for you",
-          "We create the event and open registration",
-          "Participants register online",
-          "We generate a schedule and distribute by categories",
-          "Judging is done within the system",
-          "The system calculates and updates results in real time",
-          "We publish final standings and issue certificates"
-        ],
-        nav: { 
-          home: "Home", 
-          contact: "Contact",
-          pitch: "Pitching Presentations",
-          results: "Results",
-          register: "Register"
-        },
-        form: { 
-          heading: "Contact Us", 
-          subtitle: "Need more information? <a href='contact.html' style='color: #0c57ab; font-weight: bold;'>Visit our contact page</a> or send us a message below.",
-          name: "Your Name", 
-          email: "Your Email", 
-          message: "Your Message...", 
-          send: "Send" 
-        },
-        footer: "All rights reserved.",
-        toast: "✅ Sent, thank you!"
-      },
-      he: {
-        lang: "he", dir: "rtl",
-        title: "Rising Star Manager",
-        tagline: "התחרות שלכם – המערכת שלנו",
-        description: "Rising Star Manager הוא שירות לניהול תחרויות מקצה לקצה.",
-        servicesTitle: "איך המערכת פועלת",
-        servicesSteps: [
-          "חותמים על חוזה ומגדירים את המערכת לפי הצרכים שלכם",
-          "יוצרים אירוע ופותחים את ההרשמה",
-          "המשתתפים נרשמים אונליין",
-          "יוצרים לוח זמנים ומחלקים לפי קטגוריות",
-          "השיפוט מתבצע במערכת",
-          "התוצאות מתעדכנות בזמן אמת",
-          "מפרסמים את התוצאות ומנפיקים תעודות"
-        ],
-        nav: { 
-          home: "בית", 
-          contact: "יצירת קשר",
-          pitch: "פרזנטציה",
-          results: "תוצאות",
-          register: "הרשמה"
-        },
-        form: { 
-          heading: "צור קשר", 
-          subtitle: "צריכים מידע נוסף? <a href='contact.html' style='color: #0c57ab; font-weight: bold;'>עברו לדף יצירת הקשר</a> או שלחו לנו הודעה למטה.",
-          name: "שמך", 
-          email: "האימייל שלך", 
-          message: "ההודעה שלך...", 
-          send: "שלח" 
-        },
-        footer: "כל הזכויות שמורות.",
-        toast: "✅ נשלח, תודה!"
-      }
-    };
-
-    // Detect user's preferred language
-    function detectLanguage() {
-      const userLang = navigator.language || navigator.userLanguage;
-      if (userLang.startsWith('ru')) return 'ru';
-      if (userLang.startsWith('he')) return 'he';
-      return 'en'; // default to English
-    }
-
-    function switchLang(lang) {
-      const t = translations[lang];
-      document.documentElement.lang = t.lang;
-      document.documentElement.dir = t.dir;
-      document.title = t.title;
-
-      // Update main content
-      document.getElementById('main-title').innerText = t.title;
-      document.getElementById('tagline').innerText = t.tagline;
-      document.getElementById('desc-text').innerText = t.description;
-      document.getElementById('services-title').innerText = t.servicesTitle;
-      
-      // Update steps
-      const serviceSteps = t.servicesSteps;
-      for (let i = 0; i < serviceSteps.length; i++) {
-        const stepEl = document.getElementById(`step-${i}`);
-        if (stepEl) stepEl.innerText = serviceSteps[i];
-      }
-
-      // Update navigation
-      document.getElementById('nav-home').innerText = t.nav.home;
-      document.getElementById('nav-contact').innerText = t.nav.contact;
-      document.getElementById('nav-pitch').innerText = t.nav.pitch;
-      document.getElementById('nav-results').innerText = t.nav.results;
-      document.getElementById('nav-register').innerText = t.nav.register;
-
-      // Update mobile navigation
-      document.getElementById('mobile-home').innerText = t.nav.home;
-      document.getElementById('mobile-contact').innerText = t.nav.contact;
-      document.getElementById('mobile-pitch').innerText = t.nav.pitch;
-      document.getElementById('mobile-results').innerText = t.nav.results;
-      document.getElementById('mobile-register').innerText = t.nav.register;
-
-      // Update form
-      document.getElementById('form-heading').innerText = t.form.heading;
-      document.getElementById('form-subtitle').innerHTML = t.form.subtitle;
-      document.getElementById('name-field').placeholder = t.form.name;
-      document.getElementById('email-field').placeholder = t.form.email;
-      document.getElementById('message-field').placeholder = t.form.message;
-      document.getElementById('submit-button').innerText = t.form.send;
-
-      // Update footer
-      document.getElementById('footer-text').innerText = `© 2025 Rising Star Manager. ${t.footer}`;
-    }
-
-    // Initialize after DOM loads
-    document.addEventListener('DOMContentLoaded', function() {
-      // Set language based on user preference
-      switchLang(detectLanguage());
-
-      // Menu management
-      const hamburger = document.getElementById('hamburger');
-      const mobileMenu = document.getElementById('mobileMenu');
-      const overlay = document.getElementById('overlay');
-      const body = document.body;
-
-      hamburger.addEventListener('click', function() {
-        const isExpanded = this.getAttribute('aria-expanded') === 'true';
-        this.setAttribute('aria-expanded', !isExpanded);
-        mobileMenu.classList.toggle('active');
-        overlay.classList.toggle('active');
-        body.classList.toggle('no-scroll');
-        this.classList.toggle('active');
-      });
-
-      // Close menu when clicking overlay
-      overlay.addEventListener('click', function() {
-        hamburger.setAttribute('aria-expanded', 'false');
-        mobileMenu.classList.remove('active');
-        overlay.classList.remove('active');
-        body.classList.remove('no-scroll');
-        hamburger.classList.remove('active');
-      });
-
-      // Close menu when clicking a link
-      const mobileLinks = document.querySelectorAll('.mobile-link, .mobile-btn');
-      mobileLinks.forEach(link => {
-        link.addEventListener('click', function() {
-          hamburger.setAttribute('aria-expanded', 'false');
-          mobileMenu.classList.remove('active');
-          overlay.classList.remove('active');
-          body.classList.remove('no-scroll');
-          hamburger.classList.remove('active');
-        });
-      });
-
-      // Form handling
-      document.getElementById('contactForm').addEventListener('submit', async function(e) {
-        e.preventDefault();
-        const form = e.target;
-        const data = new FormData(form);
-        
-        try {
-          const response = await fetch(form.action, {
-            method: 'POST',
-            body: data,
-            headers: { 'Accept': 'application/json' }
-          });
-
-          if (response.ok) {
-            form.reset();
-            const toast = document.getElementById('formSuccessToast');
-            toast.textContent = translations[document.documentElement.lang].toast;
-            toast.classList.add('show');
-            setTimeout(() => toast.classList.remove('show'), 3000);
-          }
-        } catch (error) {
-          alert('Form submission error');
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Сайт в разработке</title>
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #000;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
         }
-      });
-    });
-  </script>
+        
+        .password-container {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 10px;
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            border: 1px solid #333;
+        }
+        
+        h1 {
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+        
+        .input-group {
+            margin-bottom: 20px;
+        }
+        
+        input {
+            width: 100%;
+            padding: 12px;
+            border-radius: 5px;
+            border: 1px solid #333;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            font-size: 16px;
+            box-sizing: border-box;
+            margin-bottom: 15px;
+        }
+        
+        button {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            margin: 5px;
+            transition: all 0.3s ease;
+        }
+        
+        .submit-btn {
+            background-color: #0c57ab;
+            color: white;
+        }
+        
+        .submit-btn:hover {
+            background-color: #094a7a;
+        }
+        
+        .close-btn {
+            background-color: #ff4444;
+            color: white;
+        }
+        
+        .close-btn:hover {
+            background-color: #cc0000;
+        }
+        
+        .error-message {
+            color: #ff4444;
+            margin-top: 10px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="password-container">
+        <h1>Сайт в разработке</h1>
+        <p>Разработчик — введи код</p>
+        
+        <div class="input-group">
+            <input type="password" id="passwordInput" placeholder="Введите код доступа">
+            <p class="error-message" id="errorMessage">Неверный код!</p>
+        </div>
+        
+        <div class="button-group">
+            <button class="submit-btn" id="submitBtn">Ввод</button>
+            <button class="close-btn" id="closeBtn">Закрыть вкладку</button>
+        </div>
+    </div>
+
+    <script>
+        const correctPassword = "797870";
+        const passwordInput = document.getElementById('passwordInput');
+        const submitBtn = document.getElementById('submitBtn');
+        const closeBtn = document.getElementById('closeBtn');
+        const errorMessage = document.getElementById('errorMessage');
+        
+        submitBtn.addEventListener('click', checkPassword);
+        passwordInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                checkPassword();
+            }
+        });
+        
+        closeBtn.addEventListener('click', function() {
+            window.close();
+        });
+        
+        function checkPassword() {
+            if (passwordInput.value === correctPassword) {
+                // Сохраняем в localStorage, что пользователь ввел правильный пароль
+                localStorage.setItem('siteUnlocked', 'true');
+                // Перенаправляем на основную страницу
+                window.location.href = "main.html";
+            } else {
+                errorMessage.style.display = 'block';
+                passwordInput.value = '';
+                setTimeout(() => {
+                    errorMessage.style.display = 'none';
+                }, 3000);
+            }
+        }
+        
+        // Проверяем при загрузке, был ли уже введен пароль
+        if (localStorage.getItem('siteUnlocked') === 'true') {
+            window.location.href = "main.html";
+        }
+    </script>
 </body>
 </html>
