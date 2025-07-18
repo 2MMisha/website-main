@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Rising Star Manager</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Arimo&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      background: #ffffff;
+      font-family: 'Montserrat', sans-serif;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
+      direction: ltr;
+    }
+    img {
+      max-width: 200px;
+      margin-bottom: 30px;
+    }
+    .message {
+      font-size: 2rem;
+      text-transform: uppercase;
+      margin-bottom: auto;
+    }
+    .footer {
+      margin-top: auto;
+      background-color: #0c57ab;
+      color: white;
+      width: 100%;
+      padding: 15px;
+      font-family: 'Arimo', sans-serif;
+      font-size: 1rem;
+    }
+    .footer a {
+      color: white;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <img src="logo.png" alt="Logo" />
+  <div class="message" id="work-msg">We are working on it…</div>
+  <div class="footer" id="footer-msg">
+    The full version of the Rising Star Manager site is available at
+    <a href="https://www.ristar.co" target="_blank">www.RISTAR.CO</a>
+  </div>
+
+  <script>
+    const translations = {
+      en: {
+        msg: "We are working on it…",
+        footer: `The full version of the Rising Star Manager site is available at <a href="https://www.ristar.co" target="_blank">www.RISTAR.CO</a>`
+      },
+      ru: {
+        msg: "МЫ РАБОТАЕМ НАД ЭТИМ…",
+        footer: `Полная версия сайта Rising Star Manager доступна по адресу <a href="https://www.ristar.co" target="_blank">www.RISTAR.CO</a>`
+      },
+      he: {
+        msg: "אנחנו עובדים על זה…",
+        footer: `הגרסה המלאה של אתר Rising Star Manager זמינה בכתובת <a href="https://www.ristar.co" target="_blank">www.RISTAR.CO</a>`
+      }
+    };
+
+    function detectLang() {
+      const lang = navigator.language.slice(0, 2).toLowerCase();
+      return translations[lang] ? lang : 'en';
+    }
+
+    const lang = detectLang();
+    const msgElement = document.getElementById("work-msg");
+    const footerElement = document.getElementById("footer-msg");
+
+    msgElement.textContent = translations[lang].msg;
+    footerElement.innerHTML = translations[lang].footer;
+
+    // Меняем направление на иврит
+    if (lang === 'he') {
+      document.body.setAttribute("dir", "rtl");
+    }
+  </script>
+</body>
+</html>
